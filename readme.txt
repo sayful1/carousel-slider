@@ -1,9 +1,9 @@
 === Carousel Slider ===
 Contributors: sayful
 Tags: woocommerce, shortcode, images, carousel, carousel slider, image carousel, product carousel, slider, owl carousel
-Requires at least: 4.5
-Tested up to: 4.9
-Requires PHP: 5.3
+Requires at least: 5.0
+Tested up to: 5.4
+Requires PHP: 5.6
 Stable tag: 2.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
@@ -99,7 +99,7 @@ function carousel_slider_load_scripts( $load_scripts ) {
 
 Now you can use the following function at your theme template file replacing `YOUR_SLIDER_ID` with actual carousel slider id.
 
-`echo do_shortcode('[carousel_slide id='YOUR_SLIDER_ID']");` 
+`echo do_shortcode('[carousel_slide id='YOUR_SLIDER_ID']");`
 
 == Screenshots ==
 
