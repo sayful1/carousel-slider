@@ -60,12 +60,12 @@
 </template>
 
 <script>
-	import RadioButton from '../../../material-design-lite/radio-button/mdlRadioButton.vue';
+	import radioButton from 'shapla-radio-button';
 	import ColorPicker from './ColorPicker.vue';
 
 	export default {
 		name: "ButtonGenerator",
-		components: {ColorPicker, RadioButton},
+		components: {ColorPicker, radioButton},
 		props: {
 			value: {
 				type: Object, default: function () {

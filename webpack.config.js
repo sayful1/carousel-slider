@@ -22,7 +22,7 @@ let entryPoints = {
 		"./assets/src/admin/sliders-old/media-gallery.js",
 		"./assets/src/admin/sliders-old/media-url.js",
 		"./assets/src/admin/sliders-old/modal.js",
-		"./assets/src/admin/sliders-old/slider-type.js",
+		"./assets/src/admin/sliders-old/slide-type.js",
 		"./assets/src/admin/sliders-old/vendors.js",
 	],
 	blocks: [

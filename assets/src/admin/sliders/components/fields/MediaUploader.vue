@@ -25,9 +25,6 @@
 </template>
 
 <script>
-	import {MaterialButton} from '../../../material-design-lite/button/MaterialButton.js';
-	import {MaterialRipple} from '../../../material-design-lite/ripple/MaterialRipple.js';
-
 	export default {
 		name: "MediaUploader",
 		props: {
@@ -71,8 +68,6 @@
 		},
 		mounted() {
 			let self = this, frame, selection = false, button = self.$el.querySelector('.mdl-media-button');
-			new MaterialButton(button);
-			new MaterialRipple(button);
 
 			if (self.value) {
 				self.ids = self.value;

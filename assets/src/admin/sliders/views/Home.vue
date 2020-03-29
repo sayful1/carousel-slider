@@ -31,29 +31,25 @@
 			</template>
 		</list-table>
 
-		<mdl-fab @click="openModal">+</mdl-fab>
-		<mdl-modal :active="modalActive" @close="closeModal" title="Add New Slider">
+		<shapla-button theme="primary" fab @click="openModal">+</shapla-button>
+		<modal :active="modalActive" @close="closeModal" title="Add New Slider">
 			<p v-for="(label, slug) in sliderTypes">
-				<mdl-radio v-model="sliderType" :value="slug">{{label}}</mdl-radio>
+				<shapla-radio v-model="sliderType" :value="slug">{{label}}</shapla-radio>
 			</p>
-		</mdl-modal>
-		<div class="carousel-slider-spinner" v-show="loading">
-			<mdl-spinner :active="loading"></mdl-spinner>
-		</div>
+		</modal>
 	</div>
 </template>
 
 <script>
 	import ListTable from '../components/ListTable.vue';
 	import CopyToClipboard from '../components/CopyToClipboard.vue';
-	import mdlFab from '../../material-design-lite/button/mdlFab.vue';
-	import mdlModal from '../../material-design-lite/modal/mdlModal.vue';
-	import mdlRadio from '../../material-design-lite/radio/mdlRadio.vue';
-	import mdlSpinner from '../../material-design-lite/spinner/mdlSpinner.vue';
+	import shaplaButton from 'shapla-button';
+	import modal from 'shapla-modal';
+	import shaplaRadio from 'shapla-radio';
 
 	export default {
 		name: "Home",
-		components: {ListTable, mdlFab, mdlModal, mdlRadio, CopyToClipboard, mdlSpinner},
+		components: {ListTable, shaplaButton, modal, shaplaRadio, CopyToClipboard},
 		data() {
 			return {
 				loading: true,
@@ -69,6 +65,7 @@
 			}
 		},
 		mounted() {
+			this.$store.commit('SET_LOADING_STATUS', false);
 			let settings = window.carouselSliderSettings;
 			this.sliderTypes = settings.sliderTypes;
 			this.columns = settings.columns;

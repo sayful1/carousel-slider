@@ -80,10 +80,10 @@
 												<template v-if="'radio-button' === _field.type">
 													<label class="carousel-slider-control__label">{{_field.label}}</label>
 													<div class="mdl-radio-button-container">
-														<mdl-radio-button v-for="(value, key) in _field.choices"
+														<radio-button v-for="(value, key) in _field.choices"
 																		  :key="key" v-model="item[_field.id]"
 																		  :value="key"> {{value}}
-														</mdl-radio-button>
+														</radio-button>
 													</div>
 												</template>
 											</div>
@@ -92,9 +92,9 @@
 								</template>
 							</draggable>
 							<div class="media-gallery-button">
-								<mdl-button type="raised" color="default"
-											@click="addRepeaterItem(field, slider[field.id])">{{field.button_text}}
-								</mdl-button>
+								<shapla-button shadow @click="addRepeaterItem(field, slider[field.id])">
+									{{field.button_text}}
+								</shapla-button>
 							</div>
 						</template>
 						<template v-if="'select' === field.type">
@@ -107,16 +107,16 @@
 										:max="getMax(field)" :step="getStep(field)"></mdl-slider>
 						</template>
 						<template v-if="'switch' === field.type">
-							<mdl-switch v-model="slider[field.id]"></mdl-switch>
+							<shapla-switch v-model="slider[field.id]"></shapla-switch>
 						</template>
 						<template v-if="'color' === field.type">
 							<color-picker v-model="slider[field.id]" :default-color="field.default"></color-picker>
 						</template>
 						<template v-if="'radio-button' === field.type">
 							<div class="mdl-radio-button-container">
-								<mdl-radio-button v-for="(value, key) in field.choices" :key="key"
-												  v-model="slider[field.id]" :value="key">{{value}}
-								</mdl-radio-button>
+								<radio-button v-for="(value, key) in field.choices" :key="key"
+											  v-model="slider[field.id]" :value="key">{{value}}
+								</radio-button>
 							</div>
 						</template>
 						<template v-if="'gallery' === field.type">
@@ -129,16 +129,13 @@
 				</template>
 			</accordion>
 		</div>
-		<mdl-fab @click="saveSlider">
+		<shapla-button fab theme="primary" @click="saveSlider">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 				<path fill="none" d="M0 0h24v24H0V0z"></path>
 				<path fill="white"
 					  d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6z"></path>
 			</svg>
-		</mdl-fab>
-		<div class="carousel-slider-spinner" v-show="loading">
-			<mdl-spinner :active="loading"></mdl-spinner>
-		</div>
+		</shapla-button>
 	</div>
 </template>
 
@@ -156,39 +153,19 @@
 	import Background from '../components/fields/Background.vue';
 	import RichText from '../components/fields/RichText.vue';
 	import ButtonGenerator from '../components/fields/ButtonGenerator.vue';
-	import mdlSlider from '../../material-design-lite/slider/mdlSlider.vue';
-	import mdlSwitch from '../../material-design-lite/switch/mdlSwitch.vue';
-	import mdlRadioButton from '../../material-design-lite/radio-button/mdlRadioButton.vue';
-	import mdlFab from '../../material-design-lite/button/mdlFab.vue';
-	import mdlTooltip from '../../material-design-lite/tooltip/mdlTooltip.vue';
-	import mdlButton from '../../material-design-lite/button/mdlButton.vue';
-	import mdlTextfield from '../../material-design-lite/textfield/mdlTextfield.vue';
-	import mdlSpinner from '../../material-design-lite/spinner/mdlSpinner.vue';
+	import shaplaSwitch from 'shapla-switch';
+	import radioButton from 'shapla-radio-button';
+	import shaplaButton from 'shapla-button';
+	import textField from 'shapla-text-field';
+	import mdlSlider from '../../../material-design-lite/slider/mdlSlider.vue';
+	import mdlTooltip from '../../../material-design-lite/tooltip/mdlTooltip.vue';
 
 	export default {
 		name: "Slider",
 		components: {
-			draggable,
-			Accordion,
-			AccordionRepeater,
-			mdlSlider,
-			mdlSwitch,
-			mdlRadioButton,
-			ColorPicker,
-			mdlFab,
-			mdlTooltip,
-			mdlButton,
-			mdlTextfield,
-			mdlSpinner,
-			MediaUploader,
-			ImageCarousel,
-			ImageCarouselUrl,
-			VideoCarousel,
-			HeroCarousel,
-			PostCarousel,
-			Background,
-			RichText,
-			ButtonGenerator,
+			draggable, Accordion, AccordionRepeater, mdlSlider, shaplaSwitch, radioButton, ColorPicker, mdlTooltip,
+			shaplaButton, textField, MediaUploader, ImageCarousel, ImageCarouselUrl, VideoCarousel, HeroCarousel,
+			PostCarousel, Background, RichText, ButtonGenerator,
 		},
 		data() {
 			return {

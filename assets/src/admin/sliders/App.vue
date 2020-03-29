@@ -1,40 +1,33 @@
 <template>
 	<div class="carousel-slider-app">
-		<router-view></router-view>
-		<mdl-snackbar></mdl-snackbar>
+		<router-view/>
+		<confirm-dialog/>
+		<notification :options="notification"/>
+		<spinner :active="loading"/>
 	</div>
 </template>
 
 <script>
-	import mdlSnackbar from '../material-design-lite/snackbar/mdlSnackbar.vue';
+	import spinner from 'shapla-spinner';
+	import notification from 'shapla-notifications';
+	import {ConfirmDialog} from 'shapla-confirm-dialog';
+	import {mapState} from 'vuex';
 
 	export default {
 		name: 'App',
-		components: {mdlSnackbar},
+		components: {notification, spinner, ConfirmDialog},
+		computed: {
+			...mapState(['loading', 'notification']),
+		}
 	}
 </script>
 
 <style lang="scss">
-	@import "../material-design-lite/ripple/ripple";
-
 	.carousel-slider-app {
 		box-sizing: border-box;
 
 		* {
 			box-sizing: border-box;
-		}
-
-		.carousel-slider-spinner {
-			background-color: rgba(#000, 0.85);
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100%;
-			left: 0;
-			position: fixed;
-			top: 0;
-			width: 100%;
-			z-index: 99999;
 		}
 	}
 </style>
