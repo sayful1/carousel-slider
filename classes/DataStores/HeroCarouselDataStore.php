@@ -2,6 +2,8 @@
 
 namespace CarouselSlider\DataStores;
 
+use CarouselSlider\Supports\Sanitize;
+
 defined( 'ABSPATH' ) || die;
 
 class HeroCarouselDataStore extends DataStoreBase {
@@ -32,16 +34,16 @@ class HeroCarouselDataStore extends DataStoreBase {
 			'img_bg_position'          => sanitize_text_field( static::get_props( $slide, 'img_bg_position' ) ),
 			'img_bg_size'              => sanitize_text_field( static::get_props( $slide, 'img_bg_size' ) ),
 			'ken_burns_effect'         => sanitize_text_field( static::get_props( $slide, 'ken_burns_effect' ) ),
-			'bg_color'                 => static::sanitize_color( static::get_props( $slide, 'bg_color' ) ),
-			'bg_overlay'               => static::sanitize_color( static::get_props( $slide, 'bg_overlay' ) ),
+			'bg_color'                 => Sanitize::color( static::get_props( $slide, 'bg_color' ) ),
+			'bg_overlay'               => Sanitize::color( static::get_props( $slide, 'bg_overlay' ) ),
 			// Slide Style
 			'content_alignment'        => sanitize_text_field( static::get_props( $slide, 'content_alignment' ) ),
 			'heading_font_size'        => intval( static::get_props( $slide, 'heading_font_size' ) ),
 			'heading_gutter'           => sanitize_text_field( static::get_props( $slide, 'heading_gutter' ) ),
-			'heading_color'            => static::sanitize_color( static::get_props( $slide, 'heading_color' ) ),
+			'heading_color'            => Sanitize::color( static::get_props( $slide, 'heading_color' ) ),
 			'description_font_size'    => intval( static::get_props( $slide, 'description_font_size' ) ),
 			'description_gutter'       => sanitize_text_field( static::get_props( $slide, 'description_gutter' ) ),
-			'description_color'        => static::sanitize_color( static::get_props( $slide, 'description_color' ) ),
+			'description_color'        => Sanitize::color( static::get_props( $slide, 'description_color' ) ),
 			// Slide Link
 			'link_type'                => sanitize_text_field( static::get_props( $slide, 'link_type' ) ),
 			'slide_link'               => esc_url_raw( static::get_props( $slide, 'slide_link' ) ),
@@ -54,8 +56,8 @@ class HeroCarouselDataStore extends DataStoreBase {
 			'button_one_size'          => sanitize_text_field( static::get_props( $slide, 'button_one_size' ) ),
 			'button_one_border_width'  => sanitize_text_field( static::get_props( $slide, 'button_one_border_width' ) ),
 			'button_one_border_radius' => sanitize_text_field( static::get_props( $slide, 'button_one_border_radius' ) ),
-			'button_one_bg_color'      => static::sanitize_color( static::get_props( $slide, 'button_one_bg_color' ) ),
-			'button_one_color'         => static::sanitize_color( static::get_props( $slide, 'button_one_color' ) ),
+			'button_one_bg_color'      => Sanitize::color( static::get_props( $slide, 'button_one_bg_color' ) ),
+			'button_one_color'         => Sanitize::color( static::get_props( $slide, 'button_one_color' ) ),
 			// Slide Button #2
 			'button_two_text'          => sanitize_text_field( static::get_props( $slide, 'button_two_text' ) ),
 			'button_two_url'           => esc_url_raw( static::get_props( $slide, 'button_two_url' ) ),
@@ -64,8 +66,8 @@ class HeroCarouselDataStore extends DataStoreBase {
 			'button_two_size'          => sanitize_text_field( static::get_props( $slide, 'button_two_size' ) ),
 			'button_two_border_width'  => sanitize_text_field( static::get_props( $slide, 'button_two_border_width' ) ),
 			'button_two_border_radius' => sanitize_text_field( static::get_props( $slide, 'button_two_border_radius' ) ),
-			'button_two_bg_color'      => static::sanitize_color( static::get_props( $slide, 'button_two_bg_color' ) ),
-			'button_two_color'         => static::sanitize_color( static::get_props( $slide, 'button_two_color' ) ),
+			'button_two_bg_color'      => Sanitize::color( static::get_props( $slide, 'button_two_bg_color' ) ),
+			'button_two_color'         => Sanitize::color( static::get_props( $slide, 'button_two_color' ) ),
 		];
 	}
 
@@ -91,7 +93,7 @@ class HeroCarouselDataStore extends DataStoreBase {
 	/**
 	 * Get props from item
 	 *
-	 * @param array  $data
+	 * @param array $data
 	 * @param string $key
 	 * @param string $default
 	 *

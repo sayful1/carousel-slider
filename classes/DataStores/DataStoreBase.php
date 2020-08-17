@@ -2,9 +2,12 @@
 
 namespace CarouselSlider\DataStores;
 
+use CarouselSlider\Interfaces\DataStoreInterface;
+use WP_Post;
+
 defined( 'ABSPATH' ) || die;
 
-class DataStoreBase {
+class DataStoreBase implements DataStoreInterface {
 	/**
 	 * Internal meta type used to store order data.
 	 *
@@ -49,46 +52,6 @@ class DataStoreBase {
 		'_bullet_size',
 		'_bullet_position',
 		'_bullet_shape',
-		// Video carousel
-		'_video_url',
-		// Product carousel
-		'_product_query_type',
-		'_product_query',
-		'_product_categories',
-		'_product_tags',
-		'_product_in',
-		'_products_per_page',
-		'_product_title',
-		'_product_rating',
-		'_product_price',
-		'_product_cart_button',
-		'_product_onsale',
-		'_product_wishlist',
-		'_product_quick_view',
-		'_product_title_color',
-		'_product_button_bg_color',
-		'_product_button_text_color',
-		// Post Carousel
-		'_post_query_type',
-		'_post_date_after',
-		'_post_date_before',
-		'_post_categories',
-		'_post_tags',
-		'_post_in',
-		'_posts_per_page',
-		'_post_order',
-		'_post_orderby',
-		// Image carousel from URL
-		'_images_urls',
-		// Image carousel from Media Image
-		'_wpdh_image_ids',
-		'_show_attachment_title',
-		'_show_attachment_caption',
-		'_image_target',
-		'_image_lightbox',
-		// Hero banner carousel
-		'_content_slider',
-		'_content_slider_settings',
 	];
 
 	/**
@@ -125,6 +88,17 @@ class DataStoreBase {
 	}
 
 	/**
+	 * Create new slider
+	 *
+	 * @param array $data
+	 *
+	 * @return mixed|void
+	 */
+	public function create( array $data ) {
+		$this->update( $data );
+	}
+
+	/**
 	 * Update data
 	 *
 	 * @param array $data
@@ -151,7 +125,7 @@ class DataStoreBase {
 	/**
 	 * Delete a carousel
 	 *
-	 * @param int  $data
+	 * @param int $data
 	 * @param bool $force_delete
 	 *
 	 * @return bool
@@ -162,7 +136,7 @@ class DataStoreBase {
 		}
 
 		$post = get_post( $data );
-		if ( ! $post instanceof \WP_Post ) {
+		if ( ! $post instanceof WP_Post ) {
 			return false;
 		}
 
@@ -190,16 +164,5 @@ class DataStoreBase {
 		];
 
 		return $stores[ $key ];
-	}
-
-	/**
-	 * Sanitize color
-	 *
-	 * @param string $color
-	 *
-	 * @return string
-	 */
-	public static function sanitize_color( $color ) {
-		return carousel_slider_sanitize_color( $color );
 	}
 }
