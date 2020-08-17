@@ -30,8 +30,7 @@ $_lazy_load_image  = get_post_meta( $id, '_lazy_load_image', true );
 			$_thumb_id  = get_post_thumbnail_id( $post->ID );
 			$num_words  = apply_filters( 'carousel_slider_post_excerpt_length', 20 );
 			$more_text  = apply_filters( 'carousel_slider_post_read_more', ' ...', $post );
-			$_content   = apply_filters( 'the_content', $post->post_content );
-			$_excerpt   = wp_trim_words( $_content, $num_words, $more_text );
+			$_excerpt   = wp_trim_words( wp_strip_all_tags( $post->post_content ), $num_words, $more_text );
 
 			if ( has_post_thumbnail( $post ) ) {
 				$image_src = wp_get_attachment_image_src( $_thumb_id, $_image_size );

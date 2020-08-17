@@ -7,10 +7,11 @@
  * Author: Sayful Islam
  * Author URI: https://sayfulislam.com
  * Requires at least: 4.8
- * Tested up to: 5.4
+ * Tested up to: 5.5
+ * Requires PHP: 5.6
  *
  * WC requires at least: 3.0
- * WC tested up to: 4.2
+ * WC tested up to: 4.3
  *
  * Text Domain: carousel-slider
  *
@@ -21,9 +22,7 @@
  * @author Sayful Islam
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die; // If this file is called directly, abort.
-}
+defined( 'ABSPATH' ) || die;
 
 if ( ! class_exists( 'Carousel_Slider' ) ) {
 
@@ -55,7 +54,7 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		 *
 		 * @var string
 		 */
-		private $min_php = '5.6.0';
+		private $min_php = '5.6';
 
 		/**
 		 * The instance of the class

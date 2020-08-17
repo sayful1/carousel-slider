@@ -151,7 +151,7 @@ class Data_Store_Base {
 	/**
 	 * Delete a carousel
 	 *
-	 * @param int $data
+	 * @param int  $data
 	 * @param bool $force_delete
 	 *
 	 * @return bool
@@ -190,5 +190,16 @@ class Data_Store_Base {
 		];
 
 		return $stores[ $key ];
+	}
+
+	/**
+	 * Sanitize color
+	 *
+	 * @param string $color
+	 *
+	 * @return string
+	 */
+	public static function sanitize_color( $color ) {
+		return carousel_slider_sanitize_color( $color );
 	}
 }
