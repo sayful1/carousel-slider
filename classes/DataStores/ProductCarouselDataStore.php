@@ -28,4 +28,21 @@ class ProductCarouselDataStore extends DataStoreBase {
 		'_product_button_bg_color'   => 'button_background_color',
 		'_product_button_text_color' => 'button_text_color',
 	];
+
+	/**
+	 * Read data
+	 *
+	 * @param array|int $data
+	 *
+	 * @return array
+	 */
+	public function read( $data ) {
+		$meta_data = parent::read( $data );
+
+		foreach ( $this->meta_key_to_props as $key => $prop ) {
+			$meta_data[ $key ] = get_post_meta( intval( $data ), $key, true );
+		}
+
+		return $meta_data;
+	}
 }

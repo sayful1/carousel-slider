@@ -146,23 +146,4 @@ class DataStoreBase implements DataStoreInterface {
 
 		return (bool) wp_delete_post( $data, $force_delete );
 	}
-
-	/**
-	 * Get store class
-	 *
-	 * @param string $key
-	 *
-	 * @return string
-	 */
-	public static function get_store( $key ) {
-		$stores = [
-			'hero'    => HeroCarouselDataStore::class,
-			'image'   => ImageCarouselDataStore::class,
-			'post'    => PostCarouselDataStore::class,
-			'product' => ProductCarouselDataStore::class,
-			'video'   => VideoCarouselDataStore::class,
-		];
-
-		return $stores[ $key ];
-	}
 }

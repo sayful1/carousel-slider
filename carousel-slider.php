@@ -84,8 +84,8 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 					return self::$instance;
 				}
 
-				add_action( 'plugins_loaded', [ self::$instance, 'autoload_classes' ] );
-				self::$instance->includes();
+				self::$instance->autoload_classes();
+				add_action( 'plugins_loaded', [ self::$instance, 'include_classes' ] );
 
 				register_activation_hook( __FILE__, array( self::$instance, 'activation' ) );
 				register_deactivation_hook( __FILE__, array( self::$instance, 'deactivation' ) );
@@ -114,7 +114,7 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		/**
 		 * Define constant if not already set.
 		 *
-		 * @param string      $name
+		 * @param string $name
 		 * @param string|bool $value
 		 */
 		private function define( $name, $value ) {
@@ -160,7 +160,7 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		/**
 		 * Include admin and front facing files
 		 */
-		private function includes() {
+		public function include_classes() {
 			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-i18n.php';
 			require_once CAROUSEL_SLIDER_INCLUDES . '/functions-carousel-slider.php';
 			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-activator.php';

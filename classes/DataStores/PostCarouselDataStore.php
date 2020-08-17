@@ -21,4 +21,21 @@ class PostCarouselDataStore extends DataStoreBase {
 		'_post_order'       => 'order',
 		'_post_orderby'     => 'order_by',
 	];
+
+	/**
+	 * Read data
+	 *
+	 * @param array|int $data
+	 *
+	 * @return array
+	 */
+	public function read( $data ) {
+		$meta_data = parent::read( $data );
+
+		foreach ( $this->meta_key_to_props as $key => $prop ) {
+			$meta_data[ $key ] = get_post_meta( intval( $data ), $key, true );
+		}
+
+		return $meta_data;
+	}
 }
