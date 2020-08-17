@@ -4,7 +4,7 @@ namespace CarouselSlider\DataStores;
 
 defined( 'ABSPATH' ) || die;
 
-class Video_Carousel_Data_Store extends Data_Store_Base {
+class VideoCarouselDataStore extends DataStoreBase {
 	/**
 	 * Meta key to property
 	 *

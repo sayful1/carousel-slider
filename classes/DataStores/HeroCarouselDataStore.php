@@ -4,7 +4,7 @@ namespace CarouselSlider\DataStores;
 
 defined( 'ABSPATH' ) || die;
 
-class Hero_Carousel_Data_Store extends Data_Store_Base {
+class HeroCarouselDataStore extends DataStoreBase {
 	/**
 	 * Meta key to property
 	 *

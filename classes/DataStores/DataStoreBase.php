@@ -4,7 +4,7 @@ namespace CarouselSlider\DataStores;
 
 defined( 'ABSPATH' ) || die;
 
-class Data_Store_Base {
+class DataStoreBase {
 	/**
 	 * Internal meta type used to store order data.
 	 *
@@ -182,11 +182,11 @@ class Data_Store_Base {
 	 */
 	public static function get_store( $key ) {
 		$stores = [
-			'hero'    => Hero_Carousel_Data_Store::class,
-			'image'   => Image_Carousel_Data_Store::class,
-			'post'    => Post_Carousel_Data_Store::class,
-			'product' => Product_Carousel_Data_Store::class,
-			'video'   => Video_Carousel_Data_Store::class,
+			'hero'    => HeroCarouselDataStore::class,
+			'image'   => ImageCarouselDataStore::class,
+			'post'    => PostCarouselDataStore::class,
+			'product' => ProductCarouselDataStore::class,
+			'video'   => VideoCarouselDataStore::class,
 		];
 
 		return $stores[ $key ];

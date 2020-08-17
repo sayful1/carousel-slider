@@ -84,6 +84,7 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 					return self::$instance;
 				}
 
+				add_action( 'plugins_loaded', [ self::$instance, 'autoload_classes' ] );
 				self::$instance->includes();
 
 				register_activation_hook( __FILE__, array( self::$instance, 'activation' ) );
@@ -113,13 +114,47 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		/**
 		 * Define constant if not already set.
 		 *
-		 * @param string $name
+		 * @param string      $name
 		 * @param string|bool $value
 		 */
 		private function define( $name, $value ) {
 			if ( ! defined( $name ) ) {
 				define( $name, $value );
 			}
+		}
+
+		/**
+		 * Load plugin classes
+		 */
+		public function autoload_classes() {
+			spl_autoload_register( function ( $class ) {
+
+				// project-specific namespace prefix
+				$prefix = 'CarouselSlider\\';
+
+				// base directory for the namespace prefix
+				$base_dir = CAROUSEL_SLIDER_PATH . '/classes/';
+
+				// does the class use the namespace prefix?
+				$len = strlen( $prefix );
+				if ( strncmp( $prefix, $class, $len ) !== 0 ) {
+					// no, move to the next registered autoloader
+					return;
+				}
+
+				// get the relative class name
+				$relative_class = substr( $class, $len );
+
+				// replace the namespace prefix with the base directory, replace namespace
+				// separators with directory separators in the relative class name, append
+				// with .php
+				$file = $base_dir . str_replace( '\\', '/', $relative_class ) . '.php';
+
+				// if the file exists, require it
+				if ( file_exists( $file ) ) {
+					require $file;
+				}
+			} );
 		}
 
 		/**
@@ -154,6 +189,7 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 
 		/**
 		 * To be run when the plugin is activated
+		 *
 		 * @return void
 		 */
 		public function activation() {
@@ -163,6 +199,7 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 
 		/**
 		 * To be run when the plugin is deactivated
+		 *
 		 * @return void
 		 */
 		public function deactivation() {
@@ -185,9 +222,9 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 			$error .= sprintf( __( 'The Carousel Slider plugin requires PHP version %s or greater.',
 				'carousel-slider' ), $this->min_php );
 			?>
-            <div class="error">
-                <p><?php printf( $error ); ?></p>
-            </div>
+			<div class="error">
+				<p><?php printf( $error ); ?></p>
+			</div>
 			<?php
 		}
 
@@ -261,7 +298,6 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 
 /**
  * Begins execution of the plugin.
- *
  * Since everything within the plugin is registered via hooks,
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.

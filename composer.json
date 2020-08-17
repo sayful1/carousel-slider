@@ -1,0 +1,22 @@
+{
+  "name": "sayful1/carousel-slider",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Sayful Islam",
+      "email": "sayful.islam001@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "CarouselSlider\\": "classes"
+    }
+  },
+  "require": {
+    "php": ">=5.6",
+    "ext-curl": "*",
+    "ext-json": "*"
+  }
+}
