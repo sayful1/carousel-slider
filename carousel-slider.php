@@ -137,7 +137,7 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		/**
 		 * Load plugin classes
 		 */
-		public function autoload_classes() {
+		private function autoload_classes() {
 			spl_autoload_register( function ( $class ) {
 
 				// project-specific namespace prefix
@@ -174,7 +174,6 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		public function include_classes() {
 			require_once CAROUSEL_SLIDER_INCLUDES . '/functions-carousel-slider.php';
 			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-product.php';
-			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-preview.php';
 			require_once CAROUSEL_SLIDER_WIDGETS . '/widget-carousel_slider.php';
 
 			$this->container['assets'] = CarouselSlider\Assets::init();
@@ -182,19 +181,22 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 
 			if ( $this->is_request( 'admin' ) ) {
 				$this->container['admin']           = CarouselSlider\Admin\Admin::init();
+				$this->container['gutenberg_block'] = CarouselSlider\Admin\GutenbergBlock::init();
 				$this->container['visual_composer'] = CarouselSlider\Integration\VisualComposer::init();
 
 				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-form.php';
 				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-admin.php';
 				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-meta-box.php';
 				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-hero-carousel.php';
-				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-gutenberg-block.php';
 			}
 
 			if ( $this->is_request( 'frontend' ) ) {
 				$this->container['structured_post']    = CarouselSlider\StructuredData\BlogPosting::init();
 				$this->container['structured_image']   = CarouselSlider\StructuredData\ImageObject::init();
 				$this->container['structured_product'] = CarouselSlider\StructuredData\Product::init();
+
+				// Load preview class
+				$this->container['preview'] = CarouselSlider\Preview::init();
 			}
 
 			require_once CAROUSEL_SLIDER_PATH . '/shortcodes/class-carousel-slider-shortcode.php';
