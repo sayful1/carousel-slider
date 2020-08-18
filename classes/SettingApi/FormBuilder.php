@@ -242,7 +242,7 @@ class FormBuilder {
 	 * @return string
 	 */
 	public function radio( $field, $name, $value ) {
-		$table = '<fieldset><legend class="screen-reader-text"><span>' . $field['name'] . '</span></legend><p>';
+		$table = '<fieldset><legend class="screen-reader-text"><span>' . $field['title'] . '</span></legend><p>';
 
 		foreach ( $field['options'] as $key => $label ) {
 

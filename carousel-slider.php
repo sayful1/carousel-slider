@@ -173,13 +173,12 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		 */
 		public function include_classes() {
 			require_once CAROUSEL_SLIDER_INCLUDES . '/functions-carousel-slider.php';
-			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-activator.php';
 			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-product.php';
-			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-script.php';
 			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-preview.php';
 			require_once CAROUSEL_SLIDER_WIDGETS . '/widget-carousel_slider.php';
 
-			$this->container['ajax'] = CarouselSlider\Ajax::init();
+			$this->container['assets'] = CarouselSlider\Assets::init();
+			$this->container['ajax']   = CarouselSlider\Ajax::init();
 
 			if ( $this->is_request( 'admin' ) ) {
 				$this->container['admin']           = CarouselSlider\Admin\Admin::init();
@@ -192,9 +191,14 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-gutenberg-block.php';
 			}
 
+			if ( $this->is_request( 'frontend' ) ) {
+				$this->container['structured_post']    = CarouselSlider\StructuredData\BlogPosting::init();
+				$this->container['structured_image']   = CarouselSlider\StructuredData\ImageObject::init();
+				$this->container['structured_product'] = CarouselSlider\StructuredData\Product::init();
+			}
+
 			require_once CAROUSEL_SLIDER_PATH . '/shortcodes/class-carousel-slider-shortcode.php';
 			require_once CAROUSEL_SLIDER_PATH . '/shortcodes/class-carousel-slider-deprecated-shortcode.php';
-			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-structured-data.php';
 		}
 
 		/**
@@ -216,6 +220,7 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		 * @return void
 		 */
 		public function activation() {
+			CarouselSlider\Activator::activate();
 			do_action( 'carousel_slider_activation' );
 			flush_rewrite_rules();
 		}

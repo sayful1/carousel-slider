@@ -55,13 +55,20 @@ class Utils {
 	/**
 	 * Get all sliders
 	 *
+	 * @param array $args
+	 *
 	 * @return WP_Post[]
 	 */
-	public static function get_all_sliders() {
-		return get_posts( [
-			'post_type'      => static::POST_TYPE,
-			'post_status'    => 'publish',
+	public static function get_all_sliders( array $args = [] ) {
+		$args = wp_parse_args( $args, [
 			'posts_per_page' => - 1,
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+			'post_status'    => 'publish',
 		] );
+
+		$args['post_type'] = static::POST_TYPE;
+
+		return get_posts( $args );
 	}
 }
