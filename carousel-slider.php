@@ -57,6 +57,13 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		private $min_php = '5.6';
 
 		/**
+		 * Holds various class instances
+		 *
+		 * @var array
+		 */
+		private $container = array();
+
+		/**
 		 * The instance of the class
 		 *
 		 * @var self
@@ -74,6 +81,8 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
 
+				do_action( 'carousel_slider_init' );
+
 				self::$instance->define_constants();
 
 				// Check if PHP version is supported for our plugin
@@ -90,7 +99,9 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 				register_activation_hook( __FILE__, array( self::$instance, 'activation' ) );
 				register_deactivation_hook( __FILE__, array( self::$instance, 'deactivation' ) );
 
-				do_action( 'carousel_slider_init' );
+				add_action( 'init', array( self::$instance, 'load_textdomain' ) );
+
+				do_action( 'carousel_slider_loaded' );
 			}
 
 			return self::$instance;
@@ -161,7 +172,6 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		 * Include admin and front facing files
 		 */
 		public function include_classes() {
-			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-i18n.php';
 			require_once CAROUSEL_SLIDER_INCLUDES . '/functions-carousel-slider.php';
 			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-activator.php';
 			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-product.php';
@@ -169,12 +179,12 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-preview.php';
 			require_once CAROUSEL_SLIDER_WIDGETS . '/widget-carousel_slider.php';
 
+			$this->container['ajax'] = CarouselSlider\Ajax::init();
+
 			if ( $this->is_request( 'admin' ) ) {
-				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-setting-api.php';
-				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-setting.php';
-				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-credit.php';
-				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-documentation.php';
-				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-vc-element.php';
+				$this->container['admin']           = CarouselSlider\Admin\Admin::init();
+				$this->container['visual_composer'] = CarouselSlider\Integration\VisualComposer::init();
+
 				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-form.php';
 				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-admin.php';
 				require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-meta-box.php';
@@ -185,6 +195,19 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 			require_once CAROUSEL_SLIDER_PATH . '/shortcodes/class-carousel-slider-shortcode.php';
 			require_once CAROUSEL_SLIDER_PATH . '/shortcodes/class-carousel-slider-deprecated-shortcode.php';
 			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-structured-data.php';
+		}
+
+		/**
+		 * Load plugin textdomain
+		 */
+		public function load_textdomain() {
+			$locale_file = sprintf( '%1$s-%2$s.mo', 'carousel-slider', get_locale() );
+			$global_file = join( DIRECTORY_SEPARATOR, array( WP_LANG_DIR, 'carousel-slider', $locale_file ) );
+
+			// Look in global /wp-content/languages/carousel-slider folder
+			if ( file_exists( $global_file ) ) {
+				load_textdomain( $this->plugin_name, $global_file );
+			}
 		}
 
 		/**
