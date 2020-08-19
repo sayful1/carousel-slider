@@ -8,17 +8,12 @@ if ( ! function_exists( 'carousel_slider_is_url' ) ) {
 	/**
 	 * Check if url is valid as per RFC 2396 Generic Syntax
 	 *
-	 * @param  string $url
+	 * @param string $url
 	 *
 	 * @return boolean
 	 */
 	function carousel_slider_is_url( $url ) {
-		if ( filter_var( $url, FILTER_VALIDATE_URL ) ) {
-
-			return true;
-		}
-
-		return false;
+		return CarouselSlider\Supports\Validate::url( $url );
 	}
 }
 
@@ -31,44 +26,7 @@ if ( ! function_exists( 'carousel_slider_sanitize_color' ) ) {
 	 * @return mixed|string
 	 */
 	function carousel_slider_sanitize_color( $color ) {
-		if ( '' === $color ) {
-			return '';
-		}
-
-		// Trim unneeded whitespace
-		$color = str_replace( ' ', '', $color );
-
-		// If this is hex color, validate and return it
-		if ( 1 === preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
-			return $color;
-		}
-
-		// If this is rgb, validate and return it
-		if ( 'rgb(' === substr( $color, 0, 4 ) ) {
-			list( $red, $green, $blue ) = sscanf( $color, 'rgb(%d,%d,%d)' );
-
-			if ( ( $red >= 0 && $red <= 255 ) &&
-			     ( $green >= 0 && $green <= 255 ) &&
-			     ( $blue >= 0 && $blue <= 255 )
-			) {
-				return "rgb({$red},{$green},{$blue})";
-			}
-		}
-
-		// If this is rgba, validate and return it
-		if ( 'rgba(' === substr( $color, 0, 5 ) ) {
-			list( $red, $green, $blue, $alpha ) = sscanf( $color, 'rgba(%d,%d,%d,%f)' );
-
-			if ( ( $red >= 0 && $red <= 255 ) &&
-			     ( $green >= 0 && $green <= 255 ) &&
-			     ( $blue >= 0 && $blue <= 255 ) &&
-			     $alpha >= 0 && $alpha <= 1
-			) {
-				return "rgba({$red},{$green},{$blue},{$alpha})";
-			}
-		}
-
-		return '';
+		return CarouselSlider\Supports\Sanitize::color( $color );
 	}
 }
 
@@ -115,33 +73,7 @@ if ( ! function_exists( 'carousel_slider_array_to_attribute' ) ) {
 	 * @return array|string
 	 */
 	function carousel_slider_array_to_attribute( $array ) {
-		if ( ! is_array( $array ) ) {
-			return '';
-		}
-
-		$attribute = array_map( function ( $key, $value ) {
-			// If boolean value
-			if ( is_bool( $value ) ) {
-				if ( $value ) {
-
-					return sprintf( '%s="%s"', $key, 'true' );
-				} else {
-
-					return sprintf( '%s="%s"', $key, 'false' );
-				}
-			}
-			// If array value
-			if ( is_array( $value ) ) {
-
-				return sprintf( '%s="%s"', $key, implode( " ", $value ) );
-			}
-
-			// If string value
-			return sprintf( '%s="%s"', $key, esc_attr( $value ) );
-
-		}, array_keys( $array ), array_values( $array ) );
-
-		return $attribute;
+		return CarouselSlider\Utils::array_to_attributes( $array );
 	}
 }
 
@@ -152,16 +84,7 @@ if ( ! function_exists( 'carousel_slider_is_woocommerce_active' ) ) {
 	 * @return bool
 	 */
 	function carousel_slider_is_woocommerce_active() {
-
-		if ( in_array( 'woocommerce/woocommerce.php', get_option( 'active_plugins' ) ) ) {
-			return true;
-		}
-
-		if ( defined( 'WC_VERSION' ) || defined( 'WOOCOMMERCE_VERSION' ) ) {
-			return true;
-		}
-
-		return false;
+		return CarouselSlider\Utils::is_woocommerce_active();
 	}
 }
 
@@ -341,7 +264,6 @@ if ( ! function_exists( 'carousel_slider_inline_style' ) ) {
 		$id                      = $carousel_id;
 		$_nav_color              = get_post_meta( $id, '_nav_color', true );
 		$_nav_active_color       = get_post_meta( $id, '_nav_active_color', true );
-		$_post_height            = get_post_meta( $id, '_post_height', true );
 		$_product_title_color    = get_post_meta( $id, '_product_title_color', true );
 		$_product_btn_bg_color   = get_post_meta( $id, '_product_button_bg_color', true );
 		$_product_btn_text_color = get_post_meta( $id, '_product_button_text_color', true );

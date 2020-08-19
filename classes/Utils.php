@@ -71,4 +71,87 @@ class Utils {
 
 		return get_posts( $args );
 	}
+
+	/**
+	 * Check if WooCommerce active
+	 *
+	 * @return bool
+	 */
+	public static function is_woocommerce_active() {
+		if ( in_array( 'woocommerce/woocommerce.php', get_option( 'active_plugins' ) ) ) {
+			return true;
+		}
+
+		if ( defined( 'WC_VERSION' ) || defined( 'WOOCOMMERCE_VERSION' ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get image sizes
+	 *
+	 * @return array
+	 */
+	public static function get_image_sizes() {
+		$default_sizes    = array( 'thumbnail', 'medium', 'medium_large', 'large' );
+		$additional_sizes = wp_get_additional_image_sizes();
+
+		$sizes = array();
+		foreach ( get_intermediate_image_sizes() as $_size ) {
+			if ( in_array( $_size, $default_sizes ) ) {
+				$width  = get_option( "{$_size}_size_w" );
+				$height = get_option( "{$_size}_size_h" );
+				$crop   = (bool) get_option( "{$_size}_crop" ) ? 'hard' : 'soft';
+
+				$sizes[ $_size ] = "{$_size} - $crop:{$width}x{$height}";
+			}
+
+			if ( isset( $additional_sizes[ $_size ] ) ) {
+				$width  = $additional_sizes[ $_size ]['width'];
+				$height = $additional_sizes[ $_size ]['height'];
+				$crop   = $additional_sizes[ $_size ]['crop'] ? 'hard' : 'soft';
+
+				$sizes[ $_size ] = "{$_size} - $crop:{$width}x{$height}";
+			}
+		}
+
+		return array_merge( $sizes, array( 'full' => 'original uploaded image' ) );
+	}
+
+	/**
+	 * Convert array to HTML attribute
+	 *
+	 * @param array $data
+	 *
+	 * @return string
+	 */
+	public static function array_to_attributes( array $data ) {
+		$attributes = [];
+		foreach ( $data as $key => $value ) {
+			if ( empty( $value ) && 'value' !== $key ) {
+				continue;
+			}
+			if ( in_array( $key, array( 'required', 'checked', 'multiple' ) ) ) {
+				$attributes[] = $value ? esc_attr( $key ) : '';
+				continue;
+			}
+
+			if ( is_array( $value ) ) {
+				$attributes[] = esc_attr( $key ) . '=' . "'" . wp_json_encode( $value ) . "'";
+				$attributes[] = sprintf( "%s='%s'", esc_attr( $key ), wp_json_encode( $value ) );
+				continue;
+			}
+
+			// If boolean value
+			if ( is_bool( $value ) ) {
+				$value = $value ? 'true' : 'false';
+			}
+
+			$attributes[] = sprintf( '%s="%s"', esc_attr( $key ), esc_attr( $value ) );
+		}
+
+		return join( " ", $attributes );
+	}
 }
