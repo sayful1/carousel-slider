@@ -31,6 +31,17 @@ class ProductUtils {
 	}
 
 	/**
+	 * Get products
+	 *
+	 * @param array $args
+	 *
+	 * @return array|WC_Product[]
+	 */
+	public static function get_products( array $args = [] ) {
+		return wc_get_products( static::parse_args( $args ) );
+	}
+
+	/**
 	 * Get recent products
 	 *
 	 * @param array $args
@@ -38,7 +49,7 @@ class ProductUtils {
 	 * @return array|WC_Product[]
 	 */
 	public static function recent_products( array $args = [] ) {
-		return wc_get_products( static::parse_args( $args ) );
+		return static::get_products( $args );
 	}
 
 	/**
@@ -92,12 +103,25 @@ class ProductUtils {
 	/**
 	 * Get products by categories slug
 	 *
-	 * @param string[] $categories Array of categories slug
+	 * @param string[] $categories Array of categories slug or categories id
 	 * @param int $limit
 	 *
 	 * @return array|WC_Product[]
 	 */
-	public function products_by_categories( array $categories = array(), $limit = 12 ) {
+	public static function products_by_categories( array $categories = array(), $limit = 12 ) {
+		$ids = [];
+		foreach ( $categories as $index => $category ) {
+			if ( is_numeric( $category ) ) {
+				$ids[] = intval( $category );
+				unset( $categories[ $index ] );
+			}
+		}
+		if ( count( $ids ) ) {
+			$terms      = get_terms( [ 'taxonomy' => 'product_cat', 'include' => $ids ] );
+			$slugs      = wp_list_pluck( $terms, 'slug' );
+			$categories = array_merge( $slugs, array_values( $categories ) );
+		}
+
 		$args             = static::parse_args( [ 'limit' => $limit ] );
 		$args['category'] = $categories;
 
@@ -112,7 +136,20 @@ class ProductUtils {
 	 *
 	 * @return array|WC_Product[]
 	 */
-	public function products_by_tags( array $tags = array(), $limit = 12 ) {
+	public static function products_by_tags( array $tags = array(), $limit = 12 ) {
+		$ids = [];
+		foreach ( $tags as $index => $tag ) {
+			if ( is_numeric( $tag ) ) {
+				$ids[] = intval( $tag );
+				unset( $tags[ $index ] );
+			}
+		}
+		if ( count( $ids ) ) {
+			$terms = get_terms( [ 'taxonomy' => 'product_tag', 'include' => $ids ] );
+			$slugs = wp_list_pluck( $terms, 'slug' );
+			$tags  = array_merge( $slugs, array_values( $tags ) );
+		}
+
 		$args        = static::parse_args( [ 'limit' => $limit ] );
 		$args['tag'] = $tags;
 

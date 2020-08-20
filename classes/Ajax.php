@@ -22,7 +22,7 @@ class Ajax {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 
-			add_action( 'wp_ajax_carousel_slider_text', [ self::$instance, 'test' ] );
+			add_action( 'wp_ajax_carousel_slider_test', [ self::$instance, 'test' ] );
 		}
 
 		return self::$instance;
@@ -36,7 +36,21 @@ class Ajax {
 			die( 'Only admin can access this page.' );
 		}
 
-		$data = [ 'Some test data' ];
+		/**
+		 * Working fine
+		 * ================================
+		 * recent_products
+		 * best_selling_products
+		 * featured_products
+		 * products_by_categories
+		 * products_by_tags
+		 * product_categories
+		 *
+		 * Not Working
+		 * ===============================
+		 * top_rated_products
+		 */
+		$data = ProductUtils::products_by_tags( [ 280, 'alias' ] );
 		var_dump( $data );
 		die();
 	}
