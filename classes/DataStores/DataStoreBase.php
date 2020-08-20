@@ -26,7 +26,7 @@ class DataStoreBase implements DataStoreInterface {
 		'_image_size',
 		'_lazy_load_image',
 		'_margin_right',
-		'_inifnity_loop',
+		'_infinity_loop',
 		'_stage_padding',
 		'_auto_width',
 		// Responsive settings meta key
