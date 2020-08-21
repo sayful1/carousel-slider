@@ -2,7 +2,11 @@
 
 namespace CarouselSlider\DataStores;
 
+use CarouselSlider\Abstracts\SliderSettings;
 use CarouselSlider\Supports\Sanitize;
+use CarouselSlider\Utils;
+use WP_Error;
+use WP_Post;
 
 defined( 'ABSPATH' ) || die;
 
@@ -20,18 +24,23 @@ class HeroCarouselDataStore extends DataStoreBase {
 	/**
 	 * Read data
 	 *
-	 * @param array|int $data
+	 * @param WP_Post|int $post
 	 *
-	 * @return array
+	 * @return SliderSettings|WP_Error
 	 */
-	public function read( $data ) {
-		$meta_data = parent::read( $data );
-
-		foreach ( $this->meta_key_to_props as $key => $prop ) {
-			$meta_data[ $key ] = get_post_meta( intval( $data ), $key, true );
+	public function read( $post ) {
+		$post = get_post( $post );
+		if ( ! ( $post instanceof WP_Post && $post->post_type == Utils::POST_TYPE ) ) {
+			return new WP_Error( 'no_slider_found', __( 'No slider found', 'carousel-slider' ) );
 		}
 
-		return $meta_data;
+		$settings = parent::read( $post );
+
+		foreach ( $this->meta_key_to_props as $key => $prop ) {
+			$settings[ $key ] = get_post_meta( $post->ID, $key, true );
+		}
+
+		return $settings;
 	}
 
 	/**

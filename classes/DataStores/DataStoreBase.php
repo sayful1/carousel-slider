@@ -5,6 +5,8 @@ namespace CarouselSlider\DataStores;
 use CarouselSlider\Abstracts\SliderSettings;
 use CarouselSlider\Interfaces\DataStoreInterface;
 use CarouselSlider\Supports\Validate;
+use CarouselSlider\Utils;
+use WP_Error;
 use WP_Post;
 
 defined( 'ABSPATH' ) || die;
@@ -59,31 +61,26 @@ class DataStoreBase implements DataStoreInterface {
 	/**
 	 * Read data
 	 *
-	 * @param array|int $data
+	 * @param WP_Post|int $post
 	 *
-	 * @return SliderSettings
+	 * @return SliderSettings|WP_Error
 	 */
-	public function read( $data ) {
-		$meta_data = [];
-
-		if ( is_array( $data ) ) {
-			foreach ( $data as $key => $value ) {
-				if ( ! in_array( $key, $this->meta_keys ) ) {
-					continue;
-				}
-				$meta_data[ $key ] = $value;
-			}
+	public function read( $post ) {
+		$post = get_post( $post );
+		if ( ! ( $post instanceof WP_Post && $post->post_type == Utils::POST_TYPE ) ) {
+			return new WP_Error( 'no_slider_found', __( 'No slider found', 'carousel-slider' ) );
 		}
 
-		if ( is_numeric( $data ) ) {
-			foreach ( $this->meta_keys as $meta_key ) {
-				$value = get_post_meta( intval( $data ), $meta_key, true );
-				if ( $meta_key == '_margin_right' && $value == 'zero' ) {
-					$value = 0;
-				}
+		$meta_data = [];
 
-				$meta_data[ $meta_key ] = $value;
+		foreach ( $this->meta_keys as $meta_key ) {
+			$value = get_post_meta( $post->ID, $meta_key, true );
+
+			if ( $meta_key == '_margin_right' && $value == 'zero' ) {
+				$value = 0;
 			}
+
+			$meta_data[ $meta_key ] = $value;
 		}
 
 		return static::build_slider_settings( $meta_data );

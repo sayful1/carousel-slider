@@ -2,6 +2,8 @@
 
 namespace CarouselSlider\Interfaces;
 
+use WP_Post;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -22,11 +24,11 @@ interface DataStoreInterface {
 	/**
 	 * Method to read a record.
 	 *
-	 * @param mixed $data
+	 * @param int|WP_Post $post
 	 *
 	 * @return mixed
 	 */
-	public function read( $data );
+	public function read( $post );
 
 	/**
 	 * Updates a record in the database.

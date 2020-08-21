@@ -2,6 +2,12 @@
 
 namespace CarouselSlider\DataStores;
 
+use CarouselSlider\Abstracts\SliderSettings;
+use CarouselSlider\Carousels\VideoCarousel\VideoUtils;
+use CarouselSlider\Utils;
+use WP_Error;
+use WP_Post;
+
 defined( 'ABSPATH' ) || die;
 
 class VideoCarouselDataStore extends DataStoreBase {
@@ -17,17 +23,26 @@ class VideoCarouselDataStore extends DataStoreBase {
 	/**
 	 * Read data
 	 *
-	 * @param array|int $data
+	 * @param WP_Post|int $post
 	 *
-	 * @return array
+	 * @return SliderSettings|WP_Error
 	 */
-	public function read( $data ) {
-		$meta_data = parent::read( $data );
+	public function read( $post ) {
+		$post = get_post( $post );
+		if ( ! ( $post instanceof WP_Post && $post->post_type == Utils::POST_TYPE ) ) {
+			return new WP_Error( 'no_slider_found', __( 'No slider found', 'carousel-slider' ) );
+		}
+		$settings = parent::read( $post );
 
-		foreach ( $this->meta_key_to_props as $key => $prop ) {
-			$meta_data[ $key ] = get_post_meta( intval( $data ), $key, true );
+		$url = get_post_meta( $post->ID, '_video_url', true );
+		if ( is_string( $url ) ) {
+			$url = explode( ',', $url );
 		}
 
-		return $meta_data;
+		$url = VideoUtils::get_video_url( $url );
+
+		$settings->set_prop( 'video_urls', $url );
+
+		return $settings;
 	}
 }
