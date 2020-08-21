@@ -106,17 +106,4 @@ class HeroCarouselDataStore extends DataStoreBase {
 			'slide_padding'     => map_deep( $slide_padding, 'sanitize_text_field' ),
 		];
 	}
-
-	/**
-	 * Get props from item
-	 *
-	 * @param array $data
-	 * @param string $key
-	 * @param string $default
-	 *
-	 * @return mixed
-	 */
-	public static function get_props( array $data, $key, $default = '' ) {
-		return isset( $data[ $key ] ) ? $data[ $key ] : $default;
-	}
 }

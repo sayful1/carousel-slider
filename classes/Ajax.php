@@ -36,21 +36,8 @@ class Ajax {
 			die( 'Only admin can access this page.' );
 		}
 
-		/**
-		 * Working fine
-		 * ================================
-		 * recent_products
-		 * best_selling_products
-		 * featured_products
-		 * products_by_categories
-		 * products_by_tags
-		 * product_categories
-		 *
-		 * Not Working
-		 * ===============================
-		 * top_rated_products
-		 */
-		$data = ProductUtils::products_by_tags( [ 280, 'alias' ] );
+
+		$data = Utils::get_slider( 1245 );
 		var_dump( $data );
 		die();
 	}

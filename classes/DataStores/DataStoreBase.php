@@ -2,7 +2,9 @@
 
 namespace CarouselSlider\DataStores;
 
+use CarouselSlider\Abstracts\SliderSettings;
 use CarouselSlider\Interfaces\DataStoreInterface;
+use CarouselSlider\Supports\Validate;
 use WP_Post;
 
 defined( 'ABSPATH' ) || die;
@@ -59,7 +61,7 @@ class DataStoreBase implements DataStoreInterface {
 	 *
 	 * @param array|int $data
 	 *
-	 * @return array
+	 * @return SliderSettings
 	 */
 	public function read( $data ) {
 		$meta_data = [];
@@ -84,7 +86,7 @@ class DataStoreBase implements DataStoreInterface {
 			}
 		}
 
-		return $meta_data;
+		return static::build_slider_settings( $meta_data );
 	}
 
 	/**
@@ -145,5 +147,62 @@ class DataStoreBase implements DataStoreInterface {
 		}
 
 		return (bool) wp_delete_post( $data, $force_delete );
+	}
+
+	/**
+	 * Map data
+	 *
+	 * @param array $data
+	 *
+	 * @return SliderSettings
+	 */
+	private static function build_slider_settings( array $data ) {
+		$settings = [
+			'type'               => static::get_props( $data, '_slide_type', 'image-carousel' ),
+			'image_size'         => static::get_props( $data, '_image_size', 'medium_large' ),
+			'lazy_load_image'    => Validate::checked( static::get_props( $data, '_lazy_load_image', true ) ),
+			'gutter'             => intval( static::get_props( $data, '_margin_right', 10 ) ),
+			'infinity_loop'      => Validate::checked( static::get_props( $data, '_infinity_loop', true ) ),
+			'stage_padding'      => intval( static::get_props( $data, '_stage_padding', 0 ) ),
+			'auto_width'         => Validate::checked( static::get_props( $data, '_auto_width' ) ),
+			// Responsive settings meta key
+			'items_full_hd'      => intval( static::get_props( $data, '_items' ) ),
+			'items_widescreen'   => intval( static::get_props( $data, '_items_desktop' ) ),
+			'items_desktop'      => intval( static::get_props( $data, '_items_small_desktop' ) ),
+			'items_tablet'       => intval( static::get_props( $data, '_items_portrait_tablet' ) ),
+			'items_small_tablet' => intval( static::get_props( $data, '_items_small_portrait_tablet' ) ),
+			'items_mobile'       => intval( static::get_props( $data, '_items_portrait_mobile' ) ),
+			// Autoplay settings meta key
+			'autoplay'           => Validate::checked( static::get_props( $data, '_autoplay' ) ),
+			'autoplay_pause'     => Validate::checked( static::get_props( $data, '_autoplay_pause' ) ),
+			'autoplay_timeout'   => intval( static::get_props( $data, '_autoplay_timeout' ) ),
+			'autoplay_speed'     => intval( static::get_props( $data, '_autoplay_speed' ) ),
+			// Navigation settings meta key
+			'show_arrow_nav'     => static::get_props( $data, '_nav_button' ),
+			'arrow_position'     => static::get_props( $data, '_arrow_position' ),
+			'arrow_size'         => intval( static::get_props( $data, '_arrow_size' ) ),
+			'show_dot_nav'       => static::get_props( $data, '_dot_nav' ),
+			'dot_size'           => intval( static::get_props( $data, '_bullet_size' ) ),
+			'dot_position'       => static::get_props( $data, '_bullet_position' ),
+			'dot_shape'          => static::get_props( $data, '_bullet_shape' ),
+			'arrow_step'         => static::get_props( $data, '_slide_by' ),
+			'nav_color'          => static::get_props( $data, '_nav_color' ),
+			'nav_active_color'   => static::get_props( $data, '_nav_active_color' ),
+		];
+
+		return new SliderSettings( $settings );
+	}
+
+	/**
+	 * Get props from item
+	 *
+	 * @param array $data
+	 * @param string $key
+	 * @param string $default
+	 *
+	 * @return mixed
+	 */
+	protected static function get_props( array $data, $key, $default = '' ) {
+		return isset( $data[ $key ] ) ? $data[ $key ] : $default;
 	}
 }

@@ -21,6 +21,15 @@ class SliderSettings extends Data {
 	protected static $global_settings_read = false;
 
 	/**
+	 * SliderSettings constructor.
+	 *
+	 * @param array $data
+	 */
+	public function __construct( array $data = [] ) {
+		$this->data = $data;
+	}
+
+	/**
 	 * Get global settings that applied for all types of sliders
 	 */
 	public function get_global_settings() {
