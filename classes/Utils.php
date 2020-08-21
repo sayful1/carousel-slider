@@ -19,6 +19,22 @@ class Utils {
 	const POST_TYPE = 'carousels';
 
 	/**
+	 * Get carousel slider available slide type
+	 *
+	 * @return array
+	 */
+	public static function slide_type() {
+		return apply_filters( 'carousel_slider_slide_type', array(
+			'image-carousel'     => __( 'Image Carousel', 'carousel-slider' ),
+			'image-carousel-url' => __( 'Image Carousel (URL)', 'carousel-slider' ),
+			'post-carousel'      => __( 'Post Carousel', 'carousel-slider' ),
+			'product-carousel'   => __( 'Product Carousel', 'carousel-slider' ),
+			'video-carousel'     => __( 'Video Carousel', 'carousel-slider' ),
+			'hero-banner-slider' => __( 'Hero Carousel', 'carousel-slider' ),
+		) );
+	}
+
+	/**
 	 * Get store class
 	 *
 	 * @param string $key
@@ -153,5 +169,61 @@ class Utils {
 		}
 
 		return join( " ", $attributes );
+	}
+
+	/**
+	 * Get default settings
+	 *
+	 * @param string $key
+	 *
+	 * @return mixed
+	 */
+	public static function default_settings( $key = '' ) {
+		$options = apply_filters( 'carousel_slider_default_settings', [
+			'product_title_color'       => '#323232',
+			'product_button_bg_color'   => '#00d1b2',
+			'product_button_text_color' => '#f1f1f1',
+			'nav_color'                 => '#f1f1f1',
+			'nav_active_color'          => '#00d1b2',
+			'margin_right'              => 10,
+			'lazy_load_image'           => 'off',
+		] );
+
+		return isset( $options[ $key ] ) ? $options[ $key ] : $options;
+	}
+
+	/**
+	 * Available background size
+	 *
+	 * @return array
+	 */
+	public static function background_size() {
+		return array(
+			'auto'      => 'auto',
+			'contain'   => 'contain',
+			'cover'     => 'cover', // Default
+			'100% 100%' => '100%',
+			'100% auto' => '100% width',
+			'auto 100%' => '100% height',
+		);
+	}
+
+	/**
+	 * Get available background position
+	 *
+	 * @return array
+	 */
+	public static function background_position() {
+		return array(
+			'left top'      => 'left top',
+			'left center'   => 'left center',
+			'left bottom'   => 'left bottom',
+			'center top'    => 'center top',
+			'center center' => 'center', // Default
+			'center bottom' => 'center bottom',
+			'right top'     => 'right top',
+			'right center'  => 'right center',
+			'right bottom'  => 'right bottom',
+		);
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace CarouselSlider;
+namespace CarouselSlider\Carousels\ProductCarousel;
 
 use WC_Product;
 use WP_Term;

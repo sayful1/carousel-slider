@@ -289,7 +289,7 @@ if ( ! class_exists( 'Carousel_Slider_Admin' ) ) {
 			}
 
 			$ids = strip_tags( rtrim( $_POST['ids'], ',' ) );
-			update_post_meta( $_POST['post_id'], '_wpdh_image_ids', $ids );
+			update_post_meta( $_POST['post_id'], '_image_ids', $ids );
 
 			$thumbs        = explode( ',', $ids );
 			$thumbs_output = '';

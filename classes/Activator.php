@@ -29,7 +29,7 @@ class Activator {
 	public static function update_meta_160() {
 		$carousels = Utils::get_all_sliders( [ 'post_status' => 'any' ] );
 
-		if ( count( $carousels ) > 0 ) {
+		if ( count( $carousels ) ) {
 			foreach ( $carousels as $carousel ) {
 
 				$id             = $carousel->ID;
@@ -56,6 +56,9 @@ class Activator {
 					update_post_meta( $carousel->ID, '_infinity_loop', $loop );
 					delete_post_meta( $carousel->ID, '_inifnity_loop' );
 				}
+				$ids = get_post_meta( $carousel->ID, '_wpdh_image_ids', true );
+				update_post_meta( $carousel->ID, '_image_ids', $ids );
+				delete_post_meta( $carousel->ID, '_wpdh_image_ids' );
 			}
 		}
 	}

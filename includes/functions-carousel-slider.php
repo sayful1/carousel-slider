@@ -13,6 +13,8 @@ if ( ! function_exists( 'carousel_slider_is_url' ) ) {
 	 * @return boolean
 	 */
 	function carousel_slider_is_url( $url ) {
+		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Supports\Validate::url()' );
+
 		return CarouselSlider\Supports\Validate::url( $url );
 	}
 }
@@ -26,6 +28,8 @@ if ( ! function_exists( 'carousel_slider_sanitize_color' ) ) {
 	 * @return mixed|string
 	 */
 	function carousel_slider_sanitize_color( $color ) {
+		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Supports\Sanitize::color()' );
+
 		return CarouselSlider\Supports\Sanitize::color( $color );
 	}
 }
@@ -73,6 +77,8 @@ if ( ! function_exists( 'carousel_slider_array_to_attribute' ) ) {
 	 * @return array|string
 	 */
 	function carousel_slider_array_to_attribute( $array ) {
+		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::array_to_attributes()' );
+
 		return CarouselSlider\Utils::array_to_attributes( $array );
 	}
 }
@@ -84,6 +90,8 @@ if ( ! function_exists( 'carousel_slider_is_woocommerce_active' ) ) {
 	 * @return bool
 	 */
 	function carousel_slider_is_woocommerce_active() {
+		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::is_woocommerce_active()' );
+
 		return CarouselSlider\Utils::is_woocommerce_active();
 	}
 }
@@ -438,14 +446,9 @@ if ( ! function_exists( 'carousel_slider_slide_type' ) ) {
 	 * @return array
 	 */
 	function carousel_slider_slide_type( $key_only = true ) {
-		$types = apply_filters( 'carousel_slider_slide_type', array(
-			'image-carousel'     => __( 'Image Carousel', 'carousel-slider' ),
-			'image-carousel-url' => __( 'Image Carousel (URL)', 'carousel-slider' ),
-			'post-carousel'      => __( 'Post Carousel', 'carousel-slider' ),
-			'product-carousel'   => __( 'Product Carousel', 'carousel-slider' ),
-			'video-carousel'     => __( 'Video Carousel', 'carousel-slider' ),
-			'hero-banner-slider' => __( 'Hero Carousel', 'carousel-slider' ),
-		) );
+		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::slide_type()' );
+
+		$types = CarouselSlider\Utils::slide_type();
 
 		if ( $key_only ) {
 			return array_keys( $types );
@@ -462,17 +465,9 @@ if ( ! function_exists( 'carousel_slider_background_position' ) ) {
 	 * @return array
 	 */
 	function carousel_slider_background_position( $key_only = false ) {
-		$positions = array(
-			'left top'      => 'left top',
-			'left center'   => 'left center',
-			'left bottom'   => 'left bottom',
-			'center top'    => 'center top',
-			'center center' => 'center', // Default
-			'center bottom' => 'center bottom',
-			'right top'     => 'right top',
-			'right center'  => 'right center',
-			'right bottom'  => 'right bottom',
-		);
+		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::background_position()' );
+
+		$positions = CarouselSlider\Utils::background_position();
 		if ( $key_only ) {
 			return array_keys( $positions );
 		}
@@ -488,14 +483,9 @@ if ( ! function_exists( 'carousel_slider_background_size' ) ) {
 	 * @return array
 	 */
 	function carousel_slider_background_size( $key_only = false ) {
-		$sizes = array(
-			'auto'      => 'auto',
-			'contain'   => 'contain',
-			'cover'     => 'cover', // Default
-			'100% 100%' => '100%',
-			'100% auto' => '100% width',
-			'auto 100%' => '100% height',
-		);
+		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::background_size()' );
+
+		$sizes = CarouselSlider\Utils::background_size();
 		if ( $key_only ) {
 			return array_keys( $sizes );
 		}
@@ -506,17 +496,9 @@ if ( ! function_exists( 'carousel_slider_background_size' ) ) {
 
 if ( ! function_exists( 'carousel_slider_default_settings' ) ) {
 	function carousel_slider_default_settings() {
-		$options = array(
-			'product_title_color'       => '#323232',
-			'product_button_bg_color'   => '#00d1b2',
-			'product_button_text_color' => '#f1f1f1',
-			'nav_color'                 => '#f1f1f1',
-			'nav_active_color'          => '#00d1b2',
-			'margin_right'              => 10,
-			'lazy_load_image'           => 'off',
-		);
+		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::default_settings()' );
 
-		$options = apply_filters( 'carousel_slider_default_settings', $options );
+		$options = CarouselSlider\Utils::default_settings();
 		$options = json_decode( json_encode( $options ), false );
 
 		return $options;

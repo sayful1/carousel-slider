@@ -4,7 +4,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-$images_ids = array_filter( explode( ',', get_post_meta( $id, '_wpdh_image_ids', true ) ) );
+$images_ids = array_filter( explode( ',', get_post_meta( $id, '_image_ids', true ) ) );
 if ( count( $images_ids ) < 1 ) {
 	return;
 }
