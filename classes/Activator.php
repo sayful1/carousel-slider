@@ -57,8 +57,10 @@ class Activator {
 					delete_post_meta( $carousel->ID, '_inifnity_loop' );
 				}
 				$ids = get_post_meta( $carousel->ID, '_wpdh_image_ids', true );
-				update_post_meta( $carousel->ID, '_image_ids', $ids );
-				delete_post_meta( $carousel->ID, '_wpdh_image_ids' );
+				if ( $ids ) {
+					update_post_meta( $carousel->ID, '_image_ids', $ids );
+					delete_post_meta( $carousel->ID, '_wpdh_image_ids' );
+				}
 			}
 		}
 	}

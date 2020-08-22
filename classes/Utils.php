@@ -95,6 +95,23 @@ class Utils {
 	}
 
 	/**
+	 * Get slider preview url
+	 *
+	 * @param WP_Post $post
+	 *
+	 * @return string
+	 */
+	public static function get_slider_preview_url( WP_Post $post ) {
+		$args = array(
+			'carousel_slider_preview' => true,
+			'carousel_slider_iframe'  => true,
+			'slider_id'               => $post->ID,
+		);
+
+		return add_query_arg( $args, site_url( '/' ) );
+	}
+
+	/**
 	 * Check if WooCommerce active
 	 *
 	 * @return bool
