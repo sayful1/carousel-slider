@@ -34,7 +34,6 @@ if ( ! class_exists( 'Carousel_Slider_Admin' ) ) {
 
 				add_action( 'add_meta_boxes', array( self::$instance, 'add_meta_boxes' ) );
 				add_action( 'save_post', array( self::$instance, 'save_meta_box' ) );
-				add_action( 'wp_ajax_carousel_slider_save_images', array( self::$instance, 'save_images' ) );
 			}
 
 			return self::$instance;
@@ -131,39 +130,6 @@ if ( ! class_exists( 'Carousel_Slider_Admin' ) ) {
 			if ( isset( $_POST['_images_urls'] ) ) {
 				$this->save_images_urls( $post_id );
 			}
-		}
-
-		/**
-		 * Save carousel slider gallery images
-		 *
-		 * @return string
-		 */
-		public function save_images() {
-			// Check if not an autosave.
-			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-				return;
-			}
-			// Check if required fields are set
-			if ( ! isset( $_POST['ids'], $_POST['post_id'] ) ) {
-				return;
-			}
-			// Check if user has permissions to save data.
-			if ( ! current_user_can( 'edit_posts' ) ) {
-				return;
-			}
-
-			$ids = strip_tags( rtrim( $_POST['ids'], ',' ) );
-			update_post_meta( $_POST['post_id'], '_image_ids', $ids );
-
-			$thumbs        = explode( ',', $ids );
-			$thumbs_output = '';
-			foreach ( $thumbs as $thumb ) {
-				$thumbs_output .= '<li>' . wp_get_attachment_image( $thumb, array( 75, 75 ) ) . '</li>';
-			}
-
-			echo $thumbs_output;
-
-			die();
 		}
 
 		/**

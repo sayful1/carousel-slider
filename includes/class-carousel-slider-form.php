@@ -202,7 +202,7 @@ if ( ! class_exists( 'Carousel_Slider_Form' ) ) {
 			$html .= '<div class="carousel_slider_images">';
 			$html .= sprintf( '<input type="hidden" value="%1$s" id="_carousel_slider_images_ids" name="%2$s">', $value, $name );
 			$html .= sprintf(
-				'<a href="#" id="%1$s" class="button" data-id="%2$s" data-ids="%3$s" data-create="%5$s" data-edit="%6$s" data-save="%7$s" data-progress="%8$s" data-insert="%9$s">%4$s</a>',
+				'<a href="#" id="%1$s" class="button button--media-uploader" data-id="%2$s" data-ids="%3$s" data-create="%5$s" data-edit="%6$s" data-save="%7$s" data-progress="%8$s" data-insert="%9$s">%4$s</a>',
 				'carousel_slider_gallery_btn',
 				$post->ID,
 				$value,

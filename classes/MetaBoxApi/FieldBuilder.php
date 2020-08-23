@@ -229,7 +229,7 @@ class FieldBuilder {
 		$btn_text        = $value ? 'Edit Gallery' : 'Add Gallery';
 		$link_attributes = [
 			'id'            => 'carousel_slider_gallery_btn',
-			'class'         => 'button',
+			'class'         => 'button button--media-uploader',
 			'data-id'       => $post->ID,
 			'data-ids'      => $value,
 			'data-create'   => esc_html__( 'Create Gallery', 'carousel-slider' ),
