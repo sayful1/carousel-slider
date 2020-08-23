@@ -85,4 +85,31 @@ class ImageCarouselDataStore extends DataStoreBase {
 
 		return $meta_data;
 	}
+
+	/**
+	 * Sanitize external urls
+	 *
+	 * @param array $urls
+	 *
+	 * @return array
+	 */
+	public static function sanitize_external_urls( array $urls = [] ) {
+		$default = [ 'url' => '', 'title' => '', 'caption' => '', 'alt' => '', 'link_url' => '' ];
+		$data    = [];
+		foreach ( $urls as $url ) {
+			$item = wp_parse_args( $url, $default );
+			if ( ! Validate::url( $item['url'] ) ) {
+				continue;
+			}
+			$data[] = array(
+				'url'      => esc_url_raw( $item['url'] ),
+				'title'    => sanitize_text_field( $item['title'] ),
+				'caption'  => sanitize_text_field( $item['caption'] ),
+				'alt'      => sanitize_text_field( $item['alt'] ),
+				'link_url' => esc_url_raw( $item['link_url'] ),
+			);
+		}
+
+		return $data;
+	}
 }
