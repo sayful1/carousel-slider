@@ -174,10 +174,10 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		public function include_classes() {
 			require_once CAROUSEL_SLIDER_INCLUDES . '/functions-carousel-slider.php';
 			require_once CAROUSEL_SLIDER_INCLUDES . '/class-carousel-slider-product.php';
-			require_once CAROUSEL_SLIDER_WIDGETS . '/widget-carousel_slider.php';
 
 			$this->container['assets'] = CarouselSlider\Assets::init();
 			$this->container['ajax']   = CarouselSlider\Ajax::init();
+			$this->container['widget'] = CarouselSlider\Widget\CarouselSliderWidget::init();
 
 			if ( $this->is_request( 'admin' ) ) {
 				$this->container['admin']           = CarouselSlider\Admin\Admin::init();

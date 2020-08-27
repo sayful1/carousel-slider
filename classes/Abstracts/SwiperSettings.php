@@ -2,7 +2,7 @@
 
 namespace CarouselSlider\Abstracts;
 
-class OwlCarouselSettings {
+class SwiperSettings {
 
 	/**
 	 * @var SliderSettings

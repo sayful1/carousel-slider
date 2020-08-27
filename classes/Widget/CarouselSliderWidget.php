@@ -1,10 +1,42 @@
 <?php
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
 
-class Carousel_Slider_Widget extends WP_Widget {
+namespace CarouselSlider\Widget;
+
+use CarouselSlider\Utils;
+use WP_Widget;
+
+defined( 'ABSPATH' ) || exit;
+
+class CarouselSliderWidget extends WP_Widget {
+
+	/**
+	 * The instance of the class
+	 *
+	 * @var self
+	 */
+	protected static $instance = null;
+
+	/**
+	 * Only one instance of the class can be loaded
+	 *
+	 * @return self
+	 */
+	public static function init() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+
+			add_action( 'widgets_init', array( self::$instance, 'register' ) );
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Register the class as a widget
+	 */
+	public static function register() {
+		register_widget( __CLASS__ );
+	}
 
 	/**
 	 * Sets up the widgets name etc
@@ -88,13 +120,7 @@ class Carousel_Slider_Widget extends WP_Widget {
 	 * @return array
 	 */
 	private function carousels_list() {
-		$carousels = get_posts( array(
-			'post_type'      => 'carousels',
-			'post_status'    => 'publish',
-			'posts_per_page' => - 1,
-			'orderby'        => 'date',
-			'order'          => 'DESC',
-		) );
+		$carousels = Utils::get_all_sliders();
 
 		if ( count( $carousels ) < 1 ) {
 			return array();
@@ -122,10 +148,4 @@ class Carousel_Slider_Widget extends WP_Widget {
 
 		return $old_instance;
 	}
-
-	public static function register() {
-		register_widget( __CLASS__ );
-	}
 }
-
-add_action( 'widgets_init', array( 'Carousel_Slider_Widget', 'register' ) );

@@ -136,7 +136,7 @@ if ( ! class_exists( 'Carousel_Slider_Shortcode' ) ):
 		 *
 		 * @param $id
 		 *
-		 * @return array
+		 * @return string
 		 */
 		private function carousel_options( $id ) {
 			$_nav_button      = get_post_meta( $id, '_nav_button', true );
@@ -240,10 +240,10 @@ if ( ! class_exists( 'Carousel_Slider_Shortcode' ) ):
 		 *
 		 * @param $array
 		 *
-		 * @return array
+		 * @return string
 		 */
 		public function array_to_data( $array ) {
-			return carousel_slider_array_to_attribute( $array );
+			return CarouselSlider\Utils::array_to_attributes( $array );
 		}
 
 		/**
