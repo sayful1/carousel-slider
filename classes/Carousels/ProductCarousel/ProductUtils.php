@@ -53,6 +53,19 @@ class ProductUtils {
 	}
 
 	/**
+	 * Get sale products
+	 *
+	 * @param array $args
+	 *
+	 * @return array|WC_Product[]
+	 */
+	public static function sale_products( array $args = [] ) {
+		$args['include'] = array_merge( array( 0 ), wc_get_product_ids_on_sale() );
+
+		return static::get_products( $args );
+	}
+
+	/**
 	 * Get best selling products
 	 *
 	 * @param array $args
@@ -161,7 +174,7 @@ class ProductUtils {
 	 *
 	 * @param array $args
 	 *
-	 * @return WP_Term[]
+	 * @return array|WP_Term[]
 	 */
 	public static function product_categories( $args = array() ) {
 		$args = wp_parse_args( $args, array(

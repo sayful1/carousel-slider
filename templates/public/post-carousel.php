@@ -11,7 +11,7 @@ $_lazy_load_image  = get_post_meta( $id, '_lazy_load_image', true );
 ?>
 <div class="carousel-slider-outer carousel-slider-outer-posts carousel-slider-outer-<?php echo $id; ?>">
 	<?php carousel_slider_inline_style( $id ); ?>
-	<div <?php echo join( " ", $this->carousel_options( $id ) ); ?>>
+	<div <?php echo $this->carousel_options( $id ); ?>>
 		<?php
 		$posts = carousel_slider_posts( $id );
 		foreach ( $posts as $_post ):

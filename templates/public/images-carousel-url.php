@@ -15,7 +15,7 @@ $_images_urls             = get_post_meta( $id, '_images_urls', true );
 ?>
 <div class="carousel-slider-outer carousel-slider-outer-images carousel-slider-outer-<?php echo $id; ?>">
 	<?php carousel_slider_inline_style( $id ); ?>
-    <div <?php echo join( " ", $this->carousel_options( $id ) ); ?>>
+    <div <?php echo $this->carousel_options( $id ); ?>>
 		<?php
 		foreach ( $_images_urls as $imageInfo ):
 

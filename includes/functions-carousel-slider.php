@@ -1,5 +1,7 @@
 <?php
 
+use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die; // If this file is called directly, abort.
 }
@@ -210,27 +212,27 @@ if ( ! function_exists( 'carousel_slider_products' ) ) {
 
 			// Get features products
 			if ( $product_query == 'featured' ) {
-				return $product_carousel->featured_products( $args );
+				return ProductUtils::featured_products( $args );
 			}
 
 			// Get best_selling products
 			if ( $product_query == 'best_selling' ) {
-				return $product_carousel->best_selling_products( $args );
+				return ProductUtils::best_selling_products( $args );
 			}
 
 			// Get recent products
 			if ( $product_query == 'recent' ) {
-				return $product_carousel->recent_products( $args );
+				return ProductUtils::recent_products( $args );
 			}
 
 			// Get sale products
 			if ( $product_query == 'sale' ) {
-				return $product_carousel->sale_products( $args );
+				return ProductUtils::sale_products( $args );
 			}
 
 			// Get top_rated products
 			if ( $product_query == 'top_rated' ) {
-				return $product_carousel->top_rated_products( $args );
+				return ProductUtils::top_rated_products( $args );
 			}
 		}
 
@@ -239,7 +241,7 @@ if ( ! function_exists( 'carousel_slider_products' ) ) {
 			$product_in = get_post_meta( $id, '_product_in', true );
 			$product_in = array_map( 'intval', explode( ',', $product_in ) );
 
-			return $product_carousel->products( array( 'post__in' => $product_in ) );
+			return ProductUtils::get_products( array( 'include' => $product_in ) );
 		}
 
 		// Get posts by post categories IDs
@@ -247,7 +249,7 @@ if ( ! function_exists( 'carousel_slider_products' ) ) {
 			$product_cat_ids = get_post_meta( $id, '_product_categories', true );
 			$product_cat_ids = array_map( 'intval', explode( ",", $product_cat_ids ) );
 
-			return $product_carousel->products_by_categories( $product_cat_ids, $per_page );
+			return ProductUtils::products_by_categories( $product_cat_ids, $per_page );
 		}
 
 		// Get posts by post tags IDs
@@ -255,7 +257,7 @@ if ( ! function_exists( 'carousel_slider_products' ) ) {
 			$product_tags = get_post_meta( $id, '_product_tags', true );
 			$product_tags = array_map( 'intval', explode( ',', $product_tags ) );
 
-			return $product_carousel->products_by_tags( $product_tags, $per_page );
+			return ProductUtils::products_by_tags( $product_tags, $per_page );
 		}
 
 		return array();
@@ -278,7 +280,7 @@ if ( ! function_exists( 'carousel_slider_inline_style' ) ) {
 		$content_sliders         = get_post_meta( $id, '_content_slider', true );
 
 		$slide_type = get_post_meta( $id, '_slide_type', true );
-		$slide_type = in_array( $slide_type, carousel_slider_slide_type() ) ? $slide_type : 'image-carousel';
+		$slide_type = array_key_exists( $slide_type, CarouselSlider\Utils::slide_type() ) ? $slide_type : 'image-carousel';
 
 		$_arrow_size = get_post_meta( $id, '_arrow_size', true );
 		$_arrow_size = empty( $_arrow_size ) ? 48 : absint( $_arrow_size );

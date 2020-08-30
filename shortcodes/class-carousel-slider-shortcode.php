@@ -1,5 +1,7 @@
 <?php
 
+use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die; // If this file is called directly, abort.
 }
@@ -111,7 +113,7 @@ if ( ! class_exists( 'Carousel_Slider_Shortcode' ) ):
 				}
 
 				ob_start();
-				require CAROUSEL_SLIDER_TEMPLATES . '/public/product-carousel.php';
+				require CAROUSEL_SLIDER_TEMPLATES . '/public/product-carousel-2.php';
 				$html = ob_get_contents();
 				ob_end_clean();
 
@@ -255,11 +257,9 @@ if ( ! class_exists( 'Carousel_Slider_Shortcode' ) ):
 		 */
 		private function product_categories( $id = 0 ) {
 
-			$product_carousel   = new Carousel_Slider_Product();
-			$product_categories = $product_carousel->product_categories();
+			$product_categories = ProductUtils::product_categories();
 
 			$options = $this->carousel_options( $id );
-			$options = join( " ", $options );
 
 			ob_start();
 			if ( $product_categories ) {

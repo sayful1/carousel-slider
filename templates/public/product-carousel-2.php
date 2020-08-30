@@ -19,15 +19,17 @@ if ( ! carousel_slider_is_woocommerce_active() ) {
 ?>
 <div class="products carousel-slider-outer carousel-slider-outer-products carousel-slider-outer-<?php echo $id; ?>">
 	<?php carousel_slider_inline_style( $id ); ?>
-    <div <?php echo join( " ", $this->carousel_options( $id ) ); ?>>
+	<div <?php echo $this->carousel_options( $id ); ?>>
 		<?php
 		global $post;
 		global $product;
 		$posts = carousel_slider_products( $id );
+		/** @var WC_Product[] $products */
+		$products = array_map( 'wc_get_product', $posts );
 
-		foreach ( $posts as $post ):
+		foreach ( $products as $product ):
+			$post = get_post( $product->get_id() );
 			setup_postdata( $post );
-			$product = wc_get_product( $post );
 
 			if ( ! $product->is_visible() ) {
 				continue;
@@ -52,5 +54,5 @@ if ( ! carousel_slider_is_woocommerce_active() ) {
 		wp_reset_postdata();
 
 		?>
-    </div>
+	</div>
 </div>

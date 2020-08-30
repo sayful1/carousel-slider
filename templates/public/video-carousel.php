@@ -10,7 +10,7 @@ if ( count( $urls ) < 1 ) {
 ?>
 <div class="carousel-slider-outer carousel-slider-outer-videos carousel-slider-outer-<?php echo $id; ?>">
 	<?php carousel_slider_inline_style( $id ); ?>
-    <div <?php echo join( " ", $this->carousel_options( $id ) ); ?>>
+    <div <?php echo $this->carousel_options( $id ); ?>>
 		<?php
 		foreach ( $urls as $url ) {
 			?>
