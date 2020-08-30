@@ -1,4 +1,7 @@
 <?php
+
+use CarouselSlider\Carousels\PostCarousel\PostUtils;
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -13,7 +16,7 @@ $_lazy_load_image  = get_post_meta( $id, '_lazy_load_image', true );
 	<?php carousel_slider_inline_style( $id ); ?>
 	<div <?php echo $this->carousel_options( $id ); ?>>
 		<?php
-		$posts = carousel_slider_posts( $id );
+		$posts = PostUtils::get_posts( $id );
 		foreach ( $posts as $_post ):
 			global $post;
 			$post = $_post;

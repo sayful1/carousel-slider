@@ -1,22 +1,4 @@
 <?php
-/**!
- * @package Carousel_Slider
- * @subpackage Carousel_Slider_Product
- *
- * @method init()
- * @method wish_list_button()
- * @method quick_view_button()
- * @method quick_view()
- * @method products()
- * @method recent_products()
- * @method best_selling_products()
- * @method featured_products()
- * @method sale_products()
- * @method top_rated_products()
- * @method product_categories()
- * @method products_by_categories()
- * @method products_by_tags()
- */
 
 use CarouselSlider\Supports\Validate;
 
@@ -69,27 +51,19 @@ if ( ! class_exists( 'Carousel_Slider_Product' ) ) {
 		 * Show quick view button on product slider
 		 *
 		 * @param WC_Product $product
-		 * @param WP_Post $post
-		 * @param $slider_id
 		 */
-		public static function quick_view_button( $product, $post, $slider_id ) {
-			$_show_btn = get_post_meta( $slider_id, '_product_quick_view', true );
+		public static function quick_view_button( $product ) {
+			$_show_btn  = $product->get_meta( '_product_quick_view', true );
+			$product_id = $product->get_id();
 
 			if ( $_show_btn == 'on' ) {
-
-				if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '2.7.0', '>=' ) ) {
-					$product_id = $product->get_id();
-				} else {
-					$product_id = $post->ID;
-				}
-
 				wp_enqueue_script( 'magnific-popup' );
 
 				$ajax_url = wp_nonce_url( add_query_arg( array(
 					'ajax'       => 'true',
 					'action'     => 'carousel_slider_quick_view',
 					'product_id' => $product_id,
-					'slide_id'   => $slider_id
+					'slide_id'   => 0
 				), admin_url( 'admin-ajax.php' ) ), 'carousel_slider_quick_view' );
 
 				$quick_view_html = '<div style="clear: both;"></div>';

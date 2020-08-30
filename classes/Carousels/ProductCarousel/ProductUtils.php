@@ -2,6 +2,8 @@
 
 namespace CarouselSlider\Carousels\ProductCarousel;
 
+use CarouselSlider\Abstracts\SliderSettings;
+use CarouselSlider\Utils;
 use WC_Product;
 use WP_Term;
 
@@ -33,138 +35,65 @@ class ProductUtils {
 	/**
 	 * Get products
 	 *
-	 * @param array $args
+	 * @param int $slider_id
 	 *
 	 * @return array|WC_Product[]
 	 */
-	public static function get_products( array $args = [] ) {
-		return wc_get_products( static::parse_args( $args ) );
-	}
+	public static function get_products( $slider_id ) {
+		/** @var SliderSettings $setting */
+		$setting = Utils::get_slider( $slider_id );
 
-	/**
-	 * Get recent products
-	 *
-	 * @param array $args
-	 *
-	 * @return array|WC_Product[]
-	 */
-	public static function recent_products( array $args = [] ) {
-		return static::get_products( $args );
-	}
+		$query_type = $setting->get_prop( 'query_type', 'query_product' );
+		$query      = $setting->get_prop( 'query' );
 
-	/**
-	 * Get sale products
-	 *
-	 * @param array $args
-	 *
-	 * @return array|WC_Product[]
-	 */
-	public static function sale_products( array $args = [] ) {
-		$args['include'] = array_merge( array( 0 ), wc_get_product_ids_on_sale() );
+		$args = static::parse_args( [
+			'limit' => $setting->get_prop( 'per_page', 12 ),
+		] );
 
-		return static::get_products( $args );
-	}
+		if ( $query_type == 'specific_products' ) {
+			$args['include'] = (array) $setting->get_prop( 'ids_in', [] );
+		}
 
-	/**
-	 * Get best selling products
-	 *
-	 * @param array $args
-	 *
-	 * @return array|WC_Product[]
-	 */
-	public static function best_selling_products( array $args = [] ) {
-		$args = static::parse_args( $args );
+		if ( $query_type == 'product_categories' ) {
+			$categories       = (array) $setting->get_prop( 'categories', [] );
+			$args['category'] = static::format_term_for_query( $categories, 'product_cat' );
+		}
 
-		$args['order']    = 'DESC';
-		$args['orderby']  = 'meta_value_num';
-		$args['meta_key'] = 'total_sales';
+		if ( $query_type == 'product_tags' ) {
+			$tags        = (array) $setting->get_prop( 'tags', [] );
+			$args['tag'] = static::format_term_for_query( $tags, 'product_tag' );
+		}
 
-		return wc_get_products( $args );
-	}
-
-	/**
-	 * Get top rated products
-	 *
-	 * @param array $args
-	 *
-	 * @return array|WC_Product[]
-	 */
-	public static function top_rated_products( array $args = [] ) {
-		$args = static::parse_args( $args );
-
-		$args['order']    = 'DESC';
-		$args['orderby']  = 'meta_value_num';
-		$args['meta_key'] = '_wc_average_rating';
-
-		return wc_get_products( $args );
-	}
-
-	/**
-	 * Get featured products
-	 *
-	 * @param array $args
-	 *
-	 * @return array|WC_Product[]
-	 */
-	public static function featured_products( array $args = [] ) {
-		$args['featured'] = true;
-		$args             = static::parse_args( $args );
-
-		return wc_get_products( $args );
-	}
-
-	/**
-	 * Get products by categories slug
-	 *
-	 * @param string[] $categories Array of categories slug or categories id
-	 * @param int $limit
-	 *
-	 * @return array|WC_Product[]
-	 */
-	public static function products_by_categories( array $categories = array(), $limit = 12 ) {
-		$ids = [];
-		foreach ( $categories as $index => $category ) {
-			if ( is_numeric( $category ) ) {
-				$ids[] = intval( $category );
-				unset( $categories[ $index ] );
+		if ( $query_type == 'query_product' ) {
+			// Featured
+			if ( $query == 'featured' ) {
+				$args['featured'] = true;
 			}
-		}
-		if ( count( $ids ) ) {
-			$terms      = get_terms( [ 'taxonomy' => 'product_cat', 'include' => $ids ] );
-			$slugs      = wp_list_pluck( $terms, 'slug' );
-			$categories = array_merge( $slugs, array_values( $categories ) );
-		}
 
-		$args             = static::parse_args( [ 'limit' => $limit ] );
-		$args['category'] = $categories;
-
-		return wc_get_products( $args );
-	}
-
-	/**
-	 * Get products by tags slug
-	 *
-	 * @param string[] $tags Array of tags slug
-	 * @param int $limit
-	 *
-	 * @return array|WC_Product[]
-	 */
-	public static function products_by_tags( array $tags = array(), $limit = 12 ) {
-		$ids = [];
-		foreach ( $tags as $index => $tag ) {
-			if ( is_numeric( $tag ) ) {
-				$ids[] = intval( $tag );
-				unset( $tags[ $index ] );
+			// Best selling
+			if ( $query == 'best_selling' ) {
+				$args['order']    = 'DESC';
+				$args['orderby']  = 'meta_value_num';
+				$args['meta_key'] = 'total_sales';
 			}
-		}
-		if ( count( $ids ) ) {
-			$terms = get_terms( [ 'taxonomy' => 'product_tag', 'include' => $ids ] );
-			$slugs = wp_list_pluck( $terms, 'slug' );
-			$tags  = array_merge( $slugs, array_values( $tags ) );
-		}
 
-		$args        = static::parse_args( [ 'limit' => $limit ] );
-		$args['tag'] = $tags;
+			// Recent products
+			if ( $query == 'recent' ) {
+				$args['order']   = 'DESC';
+				$args['orderby'] = 'date';
+			}
+
+			if ( $query == 'sale' ) {
+				$args['include'] = array_merge( array( 0 ), wc_get_product_ids_on_sale() );
+			}
+
+			if ( $query == 'top_rated' ) {
+				$args['order']    = 'DESC';
+				$args['orderby']  = 'meta_value_num';
+				$args['meta_key'] = '_wc_average_rating';
+			}
+
+		}
 
 		return wc_get_products( $args );
 	}
@@ -186,5 +115,30 @@ class ProductUtils {
 		$args['taxonomy'] = 'product_cat';
 
 		return get_terms( $args );
+	}
+
+	/**
+	 * Format term slug
+	 *
+	 * @param array $tags
+	 * @param string $taxonomy
+	 *
+	 * @return array
+	 */
+	protected static function format_term_for_query( array $tags, $taxonomy ) {
+		$ids = [];
+		foreach ( $tags as $index => $tag ) {
+			if ( is_numeric( $tag ) ) {
+				$ids[] = intval( $tag );
+				unset( $tags[ $index ] );
+			}
+		}
+		if ( count( $ids ) ) {
+			$terms = get_terms( [ 'taxonomy' => $taxonomy, 'include' => $ids ] );
+			$slugs = wp_list_pluck( $terms, 'slug' );
+			$tags  = array_merge( $slugs, array_values( $tags ) );
+		}
+
+		return $tags;
 	}
 }

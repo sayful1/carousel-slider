@@ -15,9 +15,9 @@ if ( ! defined( 'WPINC' ) ) {
 			$this->form->select( array(
 				'id'      => '_product_query_type',
 				'name'    => esc_html__( 'Query Type', 'carousel-slider' ),
-				'std'     => 'query_porduct',
+				'std'     => 'query_product',
 				'options' => array(
-					'query_porduct'      => esc_html__( 'Query Products', 'carousel-slider' ),
+					'query_product'      => esc_html__( 'Query Products', 'carousel-slider' ),
 					'product_categories' => esc_html__( 'Product Categories', 'carousel-slider' ),
 					'product_tags'       => esc_html__( 'Product Tags', 'carousel-slider' ),
 					'specific_products'  => esc_html__( 'Specific Products', 'carousel-slider' ),

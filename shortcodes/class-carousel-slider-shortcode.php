@@ -234,7 +234,26 @@ if ( ! class_exists( 'Carousel_Slider_Shortcode' ) ):
 		 * @return string
 		 */
 		public function get_meta( $id, $key, $default = null ) {
-			return carousel_slider_get_meta( $id, $key, $default );
+			$meta = get_post_meta( $id, $key, true );
+
+			if ( empty( $meta ) && $default ) {
+				$meta = $default;
+			}
+
+			if ( $meta == 'zero' ) {
+				$meta = '0';
+			}
+			if ( $meta == 'on' ) {
+				$meta = 'true';
+			}
+			if ( $meta == 'off' ) {
+				$meta = 'false';
+			}
+			if ( $key == '_margin_right' && $meta == 0 ) {
+				$meta = '0';
+			}
+
+			return esc_attr( $meta );
 		}
 
 		/**

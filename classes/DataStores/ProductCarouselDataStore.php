@@ -3,6 +3,7 @@
 namespace CarouselSlider\DataStores;
 
 use CarouselSlider\Abstracts\SliderSettings;
+use CarouselSlider\Supports\Validate;
 use CarouselSlider\Utils;
 use WP_Error;
 use WP_Post;
@@ -50,7 +51,26 @@ class ProductCarouselDataStore extends DataStoreBase {
 		$settings = parent::read( $post );
 
 		foreach ( $this->meta_key_to_props as $key => $prop ) {
-			$settings[ $key ] = get_post_meta( $post->ID, $key, true );
+			$settings[ $prop ] = get_post_meta( $post->ID, $key, true );
+
+			// Fix typo mistake for query type
+			if ( $prop == 'query_type' ) {
+				$settings[ $prop ] = str_replace( 'query_porduct', 'query_product', $settings[ $prop ] );
+			}
+
+			if ( strpos( $prop, 'show_' ) !== false ) {
+				$settings[ $prop ] = Validate::checked( $settings[ $prop ] );
+			}
+
+			if ( $prop == 'per_page' ) {
+				$settings[ $prop ] = intval( $settings[ $prop ] );
+			}
+
+			if ( in_array( $prop, [ 'ids_in', 'categories', 'tags' ] ) && is_string( $settings[ $prop ] ) ) {
+				$ids_in = explode( ',', $settings[ $prop ] );
+
+				$settings[ $prop ] = array_filter( array_map( 'intval', $ids_in ) );
+			}
 		}
 
 		return $settings;

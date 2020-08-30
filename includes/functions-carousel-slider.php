@@ -1,5 +1,6 @@
 <?php
 
+use CarouselSlider\Carousels\PostCarousel\PostUtils;
 use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -47,26 +48,11 @@ if ( ! function_exists( 'carousel_slider_get_meta' ) ) {
 	 * @return string
 	 */
 	function carousel_slider_get_meta( $id, $key, $default = null ) {
-		$meta = get_post_meta( $id, $key, true );
+		_deprecated_function( __FUNCTION__, '2.0.0' );
 
-		if ( empty( $meta ) && $default ) {
-			$meta = $default;
-		}
+		$data = get_post_meta( $id, $key, true );
 
-		if ( $meta == 'zero' ) {
-			$meta = '0';
-		}
-		if ( $meta == 'on' ) {
-			$meta = 'true';
-		}
-		if ( $meta == 'off' ) {
-			$meta = 'false';
-		}
-		if ( $key == '_margin_right' && $meta == 0 ) {
-			$meta = '0';
-		}
-
-		return esc_attr( $meta );
+		return ! empty( $data ) ? $data : $default;
 	}
 }
 
@@ -102,88 +88,14 @@ if ( ! function_exists( 'carousel_slider_posts' ) ) {
 	/**
 	 * Get posts by carousel slider ID
 	 *
-	 * @param $carousel_id
+	 * @param $id
 	 *
 	 * @return array
 	 */
-	function carousel_slider_posts( $carousel_id ) {
-		$id = $carousel_id;
-		// Get settings from carousel slider
-		$order      = get_post_meta( $id, '_post_order', true );
-		$orderby    = get_post_meta( $id, '_post_orderby', true );
-		$per_page   = intval( get_post_meta( $id, '_posts_per_page', true ) );
-		$query_type = get_post_meta( $id, '_post_query_type', true );
-		$query_type = empty( $query_type ) ? 'latest_posts' : $query_type;
+	function carousel_slider_posts( $id ) {
+		_deprecated_function( __FUNCTION__, '2.0.0', PostUtils::class . '::get_posts()' );
 
-		$args = array(
-			'post_type'      => 'post',
-			'post_status'    => 'publish',
-			'order'          => $order,
-			'orderby'        => $orderby,
-			'posts_per_page' => $per_page
-		);
-
-		// Get posts by post IDs
-		if ( $query_type == 'specific_posts' ) {
-			$post_in = explode( ',', get_post_meta( $id, '_post_in', true ) );
-			$post_in = array_map( 'intval', $post_in );
-			unset( $args['posts_per_page'] );
-			$args = array_merge( $args, array( 'post__in' => $post_in ) );
-		}
-
-		// Get posts by post catagories IDs
-		if ( $query_type == 'post_categories' ) {
-			$post_categories = get_post_meta( $id, '_post_categories', true );
-			$args            = array_merge( $args, array( 'cat' => $post_categories ) );
-		}
-
-		// Get posts by post tags IDs
-		if ( $query_type == 'post_tags' ) {
-			$post_tags = get_post_meta( $id, '_post_tags', true );
-			$post_tags = array_map( 'intval', explode( ',', $post_tags ) );
-			$args      = array_merge( $args, array( 'tag__in' => $post_tags ) );
-		}
-
-		// Get posts by date range
-		if ( $query_type == 'date_range' ) {
-
-			$post_date_after  = get_post_meta( $id, '_post_date_after', true );
-			$post_date_before = get_post_meta( $id, '_post_date_before', true );
-
-			if ( $post_date_after && $post_date_before ) {
-				$args = array_merge( $args, array(
-					'date_query' => array(
-						array(
-							'after'     => $post_date_after,
-							'before'    => $post_date_before,
-							'inclusive' => true,
-						),
-					),
-				) );
-			} elseif ( $post_date_after ) {
-				$args = array_merge( $args, array(
-					'date_query' => array(
-						array(
-							'before'    => $post_date_before,
-							'inclusive' => true,
-						),
-					),
-				) );
-			} elseif ( $post_date_before ) {
-				$args = array_merge( $args, array(
-					'date_query' => array(
-						array(
-							'before'    => $post_date_before,
-							'inclusive' => true,
-						),
-					),
-				) );
-			}
-		}
-
-		$posts = get_posts( $args );
-
-		return $posts;
+		return PostUtils::get_posts( $id );
 	}
 }
 
@@ -191,76 +103,14 @@ if ( ! function_exists( 'carousel_slider_products' ) ) {
 	/**
 	 * Get products by carousel slider ID
 	 *
-	 * @param $carousel_id
+	 * @param int $id
 	 *
 	 * @return array
 	 */
-	function carousel_slider_products( $carousel_id ) {
-		$id         = $carousel_id;
-		$per_page   = intval( get_post_meta( $id, '_products_per_page', true ) );
-		$query_type = get_post_meta( $id, '_product_query_type', true );
-		$query_type = empty( $query_type ) ? 'query_product' : $query_type;
-		// Type mistake
-		$query_type    = ( 'query_porduct' == $query_type ) ? 'query_product' : $query_type;
-		$product_query = get_post_meta( $id, '_product_query', true );
+	function carousel_slider_products( $id ) {
+		_deprecated_function( __FUNCTION__, '2.0.0', ProductUtils::class . '::get_products()' );
 
-		$product_carousel = new Carousel_Slider_Product();
-
-		$args = array( 'posts_per_page' => $per_page );
-
-		if ( $query_type == 'query_product' ) {
-
-			// Get features products
-			if ( $product_query == 'featured' ) {
-				return ProductUtils::featured_products( $args );
-			}
-
-			// Get best_selling products
-			if ( $product_query == 'best_selling' ) {
-				return ProductUtils::best_selling_products( $args );
-			}
-
-			// Get recent products
-			if ( $product_query == 'recent' ) {
-				return ProductUtils::recent_products( $args );
-			}
-
-			// Get sale products
-			if ( $product_query == 'sale' ) {
-				return ProductUtils::sale_products( $args );
-			}
-
-			// Get top_rated products
-			if ( $product_query == 'top_rated' ) {
-				return ProductUtils::top_rated_products( $args );
-			}
-		}
-
-		// Get products by product IDs
-		if ( $query_type == 'specific_products' ) {
-			$product_in = get_post_meta( $id, '_product_in', true );
-			$product_in = array_map( 'intval', explode( ',', $product_in ) );
-
-			return ProductUtils::get_products( array( 'include' => $product_in ) );
-		}
-
-		// Get posts by post categories IDs
-		if ( $query_type == 'product_categories' ) {
-			$product_cat_ids = get_post_meta( $id, '_product_categories', true );
-			$product_cat_ids = array_map( 'intval', explode( ",", $product_cat_ids ) );
-
-			return ProductUtils::products_by_categories( $product_cat_ids, $per_page );
-		}
-
-		// Get posts by post tags IDs
-		if ( $query_type == 'product_tags' ) {
-			$product_tags = get_post_meta( $id, '_product_tags', true );
-			$product_tags = array_map( 'intval', explode( ',', $product_tags ) );
-
-			return ProductUtils::products_by_tags( $product_tags, $per_page );
-		}
-
-		return array();
+		return ProductUtils::get_products( $id );
 	}
 }
 

@@ -61,6 +61,10 @@ class Activator {
 					update_post_meta( $carousel->ID, '_image_ids', $ids );
 					delete_post_meta( $carousel->ID, '_wpdh_image_ids' );
 				}
+
+				$query_type = get_post_meta( $carousel->ID, '_product_query_type', true );
+				$query_type = str_replace( 'query_porduct', 'query_product', $query_type );
+				update_post_meta( $carousel->ID, '_product_query_type', $query_type );
 			}
 		}
 	}

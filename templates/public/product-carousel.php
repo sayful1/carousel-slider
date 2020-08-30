@@ -1,5 +1,7 @@
 <?php
 // If this file is called directly, abort.
+use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
+
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
@@ -17,9 +19,7 @@ if ( ! carousel_slider_is_woocommerce_active() ) {
 	return;
 }
 
-$posts = carousel_slider_products( $id );
-/** @var WC_Product[] $products */
-$products = array_map( 'wc_get_product', $posts );
+$products = ProductUtils::get_products( $id );
 
 $_image_size       = get_post_meta( $id, '_image_size', true );
 $_nav_color        = get_post_meta( $id, '_nav_color', true );

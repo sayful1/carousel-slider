@@ -43,7 +43,17 @@ class PostCarouselDataStore extends DataStoreBase {
 		$settings = parent::read( $post );
 
 		foreach ( $this->meta_key_to_props as $key => $prop ) {
-			$settings[ $key ] = get_post_meta( intval( $post ), $key, true );
+			$settings[ $prop ] = get_post_meta( $post->ID, $key, true );
+
+			if ( $prop == 'per_page' ) {
+				$settings[ $prop ] = intval( $settings[ $prop ] );
+			}
+
+			if ( in_array( $prop, [ 'ids_in', 'categories', 'tags' ] ) && is_string( $settings[ $prop ] ) ) {
+				$ids_in = explode( ',', $settings[ $prop ] );
+
+				$settings[ $prop ] = array_filter( array_map( 'intval', $ids_in ) );
+			}
 		}
 
 		return $settings;

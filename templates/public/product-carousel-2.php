@@ -1,4 +1,7 @@
 <?php
+
+use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -23,9 +26,7 @@ if ( ! carousel_slider_is_woocommerce_active() ) {
 		<?php
 		global $post;
 		global $product;
-		$posts = carousel_slider_products( $id );
-		/** @var WC_Product[] $products */
-		$products = array_map( 'wc_get_product', $posts );
+		$products = ProductUtils::get_products( $id );
 
 		foreach ( $products as $product ):
 			$post = get_post( $product->get_id() );
