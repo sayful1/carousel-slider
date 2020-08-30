@@ -1,12 +1,14 @@
 <?php
-// If this file is called directly, abort.
-use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
 
+use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
+use CarouselSlider\Utils;
+
+// If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ! carousel_slider_is_woocommerce_active() ) {
+if ( ! Utils::is_woocommerce_active() ) {
 	if ( current_user_can( 'manage_options' ) ) {
 		printf(
 			esc_html__( 'Carousel Slider needs %s to work for products carousel.', 'carousel-slider' ),
@@ -99,12 +101,7 @@ $_product_quick_view = get_post_meta( $id, '_product_quick_view', true );
 
 				if ( $_product_quick_view == 'on' ) {
 					wp_enqueue_script( 'magnific-popup' );
-					$ajax_url        = wp_nonce_url( add_query_arg( array(
-						'ajax'       => 'true',
-						'action'     => 'carousel_slider_quick_view',
-						'product_id' => $post->ID,
-						'slide_id'   => $id
-					), admin_url( 'admin-ajax.php' ) ), 'carousel_slider_quick_view' );
+					$ajax_url        = ProductUtils::get_product_quick_view_url( $product->get_id() );
 					$quick_view_html = '<div style="clear: both;"></div>';
 					$quick_view_html .= sprintf(
 						'<a class="magnific-popup button quick_view" href="%1$s" data-product-id="%2$s">%3$s</a>',

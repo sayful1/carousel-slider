@@ -141,4 +141,22 @@ class ProductUtils {
 
 		return $tags;
 	}
+
+	/**
+	 * Get product quick view url
+	 *
+	 * @param int $product_id
+	 *
+	 * @return string
+	 */
+	public static function get_product_quick_view_url( $product_id ) {
+		$args = array(
+			'action'     => 'carousel_slider_quick_view',
+			'ajax'       => 'true',
+			'product_id' => $product_id,
+		);
+		$url  = add_query_arg( $args, admin_url( 'admin-ajax.php' ) );
+
+		return wp_nonce_url( $url, 'carousel_slider_quick_view' );
+	}
 }

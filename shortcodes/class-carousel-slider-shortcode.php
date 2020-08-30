@@ -1,6 +1,7 @@
 <?php
 
 use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
+use CarouselSlider\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die; // If this file is called directly, abort.
@@ -52,7 +53,7 @@ if ( ! class_exists( 'Carousel_Slider_Shortcode' ) ):
 			$id = intval( $attributes['id'] );
 
 			$slide_type = get_post_meta( $id, '_slide_type', true );
-			$slide_type = in_array( $slide_type, carousel_slider_slide_type() ) ? $slide_type : 'image-carousel';
+			$slide_type = array_key_exists( $slide_type, Utils::slide_type() ) ? $slide_type : 'image-carousel';
 
 			if ( $slide_type == 'post-carousel' ) {
 				ob_start();

@@ -1,13 +1,14 @@
 <?php
 
 use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
+use CarouselSlider\Utils;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ! carousel_slider_is_woocommerce_active() ) {
+if ( ! Utils::is_woocommerce_active() ) {
 	if ( current_user_can( 'manage_options' ) ) {
 		printf(
 			esc_html__( 'Carousel Slider needs %s to work for products carousel.', 'carousel-slider' ),

@@ -1,5 +1,7 @@
 <?php
 
+use CarouselSlider\Supports\Validate;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die; // If this file is called directly, abort.
 }
@@ -168,7 +170,7 @@ if ( ! class_exists( 'Carousel_Slider_Deprecated_Shortcode' ) ):
 		 * @return boolean
 		 */
 		private function is_valid_url( $url ) {
-			return carousel_slider_is_url( $url );
+			return Validate::url( $url );
 		}
 
 		/**

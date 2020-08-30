@@ -2,6 +2,7 @@
 
 use CarouselSlider\Carousels\PostCarousel\PostUtils;
 use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
+use CarouselSlider\Supports\Sanitize;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die; // If this file is called directly, abort.
@@ -222,8 +223,8 @@ if ( ! function_exists( 'carousel_slider_inline_style' ) ) {
 				if ( isset( $slide['link_type'] ) && ( $slide['link_type'] == 'button' ) ) {
 
 					$_btn_1_type          = ! empty( $slide['button_one_type'] ) ? esc_attr( $slide['button_one_type'] ) : 'normal';
-					$_btn_1_bg_color      = ! empty( $slide['button_one_bg_color'] ) ? carousel_slider_sanitize_color( $slide['button_one_bg_color'] ) : '#00d1b2';
-					$_btn_1_color         = ! empty( $slide['button_one_color'] ) ? carousel_slider_sanitize_color( $slide['button_one_color'] ) : '#ffffff';
+					$_btn_1_bg_color      = ! empty( $slide['button_one_bg_color'] ) ? Sanitize::color( $slide['button_one_bg_color'] ) : '#00d1b2';
+					$_btn_1_color         = ! empty( $slide['button_one_color'] ) ? Sanitize::color( $slide['button_one_color'] ) : '#ffffff';
 					$_btn_1_border_width  = ! empty( $slide['button_one_border_width'] ) ? esc_attr( $slide['button_one_border_width'] ) : '0px';
 					$_btn_1_border_radius = ! empty( $slide['button_one_border_radius'] ) ? esc_attr( $slide['button_one_border_radius'] ) : '3px';
 
@@ -253,8 +254,8 @@ if ( ! function_exists( 'carousel_slider_inline_style' ) ) {
 					}
 
 					$_btn_2_type          = ! empty( $slide['button_two_type'] ) ? esc_attr( $slide['button_two_type'] ) : 'normal';
-					$_btn_2_bg_color      = ! empty( $slide['button_two_bg_color'] ) ? carousel_slider_sanitize_color( $slide['button_two_bg_color'] ) : '#00d1b2';
-					$_btn_2_color         = ! empty( $slide['button_two_color'] ) ? carousel_slider_sanitize_color( $slide['button_two_color'] ) : '#ffffff';
+					$_btn_2_bg_color      = ! empty( $slide['button_two_bg_color'] ) ? Sanitize::color( $slide['button_two_bg_color'] ) : '#00d1b2';
+					$_btn_2_color         = ! empty( $slide['button_two_color'] ) ? Sanitize::color( $slide['button_two_color'] ) : '#ffffff';
 					$_btn_2_border_width  = ! empty( $slide['button_two_border_width'] ) ? esc_attr( $slide['button_two_border_width'] ) : '0px';
 					$_btn_2_border_radius = ! empty( $slide['button_two_border_radius'] ) ? esc_attr( $slide['button_two_border_radius'] ) : '3px';
 					if ( $_btn_2_type == 'stroke' ) {

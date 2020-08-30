@@ -1,5 +1,6 @@
 <?php
 
+use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
 use CarouselSlider\Supports\Validate;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -59,12 +60,7 @@ if ( ! class_exists( 'Carousel_Slider_Product' ) ) {
 			if ( $_show_btn == 'on' ) {
 				wp_enqueue_script( 'magnific-popup' );
 
-				$ajax_url = wp_nonce_url( add_query_arg( array(
-					'ajax'       => 'true',
-					'action'     => 'carousel_slider_quick_view',
-					'product_id' => $product_id,
-					'slide_id'   => 0
-				), admin_url( 'admin-ajax.php' ) ), 'carousel_slider_quick_view' );
+				$ajax_url = ProductUtils::get_product_quick_view_url( $product_id );
 
 				$quick_view_html = '<div style="clear: both;"></div>';
 				$quick_view_html .= sprintf(
@@ -81,7 +77,7 @@ if ( ! class_exists( 'Carousel_Slider_Product' ) ) {
 		 * Display quick view popup content
 		 */
 		public static function quick_view() {
-			if ( ! isset( $_GET['_wpnonce'], $_GET['product_id'], $_GET['slide_id'] ) ) {
+			if ( ! isset( $_GET['_wpnonce'], $_GET['product_id'] ) ) {
 				wp_die();
 			}
 
@@ -93,7 +89,7 @@ if ( ! class_exists( 'Carousel_Slider_Product' ) ) {
 			$product = wc_get_product( intval( $_GET['product_id'] ) );
 
 			?>
-			<div id="pmid-<?php echo intval( $_GET['slide_id'] ); ?>" class="product carousel-slider__product-modal">
+			<div id="pmid-<?php echo intval( $_GET['product_id'] ); ?>" class="product carousel-slider__product-modal">
 
 				<div class="images">
 					<?php echo get_the_post_thumbnail( $product->get_id(), 'medium_large' ); ?>
