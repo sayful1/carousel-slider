@@ -324,7 +324,9 @@ if ( ! class_exists( 'Carousel_Slider_Form' ) ) {
 			}
 			list( $name, $value ) = $this->field_common( $args );
 
-			$value    = explode( ',', strip_tags( rtrim( $value, ',' ) ) );
+			if ( is_string( $value ) ) {
+				$value = explode( ',', strip_tags( rtrim( $value, ',' ) ) );
+			}
 			$multiple = isset( $args['multiple'] ) ? 'multiple' : '';
 			$taxonomy = isset( $args['taxonomy'] ) ? $args['taxonomy'] : 'category';
 

@@ -2,6 +2,7 @@
 
 use CarouselSlider\DataStores\HeroCarouselDataStore;
 use CarouselSlider\DataStores\ImageCarouselDataStore;
+use CarouselSlider\DataStores\PostCarouselDataStore;
 
 defined( 'ABSPATH' ) || die;
 
@@ -104,6 +105,14 @@ if ( ! class_exists( 'Carousel_Slider_Admin' ) ) {
 				$this->update_content_settings( $post_id );
 			}
 
+			if ( isset( $_POST['carousel_slider_post'] ) ) {
+				( new PostCarouselDataStore )->save( $post_id, $_POST['carousel_slider_post'] );
+			}
+
+			if ( isset( $_POST['_images_urls'] ) ) {
+				$this->save_images_urls( $post_id );
+			}
+
 			foreach ( $_POST['carousel_slider'] as $key => $val ) {
 				if ( is_array( $val ) ) {
 					$val = implode( ',', $val );
@@ -113,22 +122,6 @@ if ( ! class_exists( 'Carousel_Slider_Admin' ) ) {
 					$val = 'zero';
 				}
 				update_post_meta( $post_id, $key, sanitize_text_field( $val ) );
-			}
-
-			if ( ! isset( $_POST['carousel_slider']['_post_categories'] ) ) {
-				update_post_meta( $post_id, '_post_categories', '' );
-			}
-
-			if ( ! isset( $_POST['carousel_slider']['_post_tags'] ) ) {
-				update_post_meta( $post_id, '_post_tags', '' );
-			}
-
-			if ( ! isset( $_POST['carousel_slider']['_post_in'] ) ) {
-				update_post_meta( $post_id, '_post_in', '' );
-			}
-
-			if ( isset( $_POST['_images_urls'] ) ) {
-				$this->save_images_urls( $post_id );
 			}
 		}
 

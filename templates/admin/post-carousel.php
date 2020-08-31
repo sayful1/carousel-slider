@@ -5,14 +5,15 @@ if ( ! defined( 'WPINC' ) ) {
 }
 ?>
 <div data-id="open" id="section_post_query" class="shapla-toggle shapla-toggle--stroke"
-     style="display: <?php echo $slide_type != 'post-carousel' ? 'none' : 'block'; ?>">
+	 style="display: <?php echo $slide_type != 'post-carousel' ? 'none' : 'block'; ?>">
 	<span class="shapla-toggle-title">
 		<?php esc_html_e( 'Post Query', 'carousel-slider' ); ?>
 	</span>
-    <div class="shapla-toggle-inner">
-        <div class="shapla-toggle-content">
+	<div class="shapla-toggle-inner">
+		<div class="shapla-toggle-content">
 			<?php
 			$this->form->select( array(
+				'group'   => 'carousel_slider_post',
 				'id'      => '_post_query_type',
 				'name'    => esc_html__( 'Query Type', 'carousel-slider' ),
 				'std'     => 'latest_posts',
@@ -25,16 +26,19 @@ if ( ! defined( 'WPINC' ) ) {
 				),
 			) );
 			$this->form->date( array(
-				'id'   => '_post_date_after',
-				'name' => esc_html__( 'Date from', 'carousel-slider' ),
-				'desc' => sprintf( esc_html__( 'Example: %s', 'carousel-slider' ), date( 'F d, Y', strtotime( '-3 months' ) ) ),
+				'group' => 'carousel_slider_post',
+				'id'    => '_post_date_after',
+				'name'  => esc_html__( 'Date from', 'carousel-slider' ),
+				'desc'  => sprintf( esc_html__( 'Example: %s', 'carousel-slider' ), date( 'F d, Y', strtotime( '-3 months' ) ) ),
 			) );
 			$this->form->date( array(
-				'id'   => '_post_date_before',
-				'name' => esc_html__( 'Date to', 'carousel-slider' ),
-				'desc' => sprintf( esc_html__( 'Example: %s', 'carousel-slider' ), date( 'F d, Y', strtotime( '-7 days' ) ) ),
+				'group' => 'carousel_slider_post',
+				'id'    => '_post_date_before',
+				'name'  => esc_html__( 'Date to', 'carousel-slider' ),
+				'desc'  => sprintf( esc_html__( 'Example: %s', 'carousel-slider' ), date( 'F d, Y', strtotime( '-7 days' ) ) ),
 			) );
 			$this->form->post_terms( array(
+				'group'    => 'carousel_slider_post',
 				'id'       => '_post_categories',
 				'taxonomy' => 'category',
 				'multiple' => true,
@@ -42,6 +46,7 @@ if ( ! defined( 'WPINC' ) ) {
 				'desc'     => esc_html__( 'Show posts associated with selected categories.', 'carousel-slider' ),
 			) );
 			$this->form->post_terms( array(
+				'group'    => 'carousel_slider_post',
 				'id'       => '_post_tags',
 				'taxonomy' => 'post_tag',
 				'multiple' => true,
@@ -49,18 +54,21 @@ if ( ! defined( 'WPINC' ) ) {
 				'desc'     => esc_html__( 'Show posts associated with selected tags.', 'carousel-slider' ),
 			) );
 			$this->form->posts_list( array(
+				'group'    => 'carousel_slider_post',
 				'id'       => '_post_in',
 				'multiple' => true,
 				'name'     => esc_html__( 'Specific posts', 'carousel-slider' ),
 				'desc'     => esc_html__( 'Select posts that you want to show as slider. Select at least 5 posts', 'carousel-slider' ),
 			) );
 			$this->form->number( array(
-				'id'   => '_posts_per_page',
-				'name' => esc_html__( 'Posts per page', 'carousel-slider' ),
-				'std'  => 12,
-				'desc' => esc_html__( 'How many post you want to show on carousel slide.', 'carousel-slider' ),
+				'group' => 'carousel_slider_post',
+				'id'    => '_posts_per_page',
+				'name'  => esc_html__( 'Posts per page', 'carousel-slider' ),
+				'std'   => 12,
+				'desc'  => esc_html__( 'How many post you want to show on carousel slide.', 'carousel-slider' ),
 			) );
 			$this->form->select( array(
+				'group'   => 'carousel_slider_post',
 				'id'      => '_post_order',
 				'name'    => esc_html__( 'Order', 'carousel-slider' ),
 				'std'     => 'DESC',
@@ -70,6 +78,7 @@ if ( ! defined( 'WPINC' ) ) {
 				),
 			) );
 			$this->form->select( array(
+				'group'   => 'carousel_slider_post',
 				'id'      => '_post_orderby',
 				'name'    => esc_html__( 'Order by', 'carousel-slider' ),
 				'std'     => 'ID',
@@ -84,6 +93,6 @@ if ( ! defined( 'WPINC' ) ) {
 				),
 			) );
 			?>
-        </div>
-    </div>
+		</div>
+	</div>
 </div>

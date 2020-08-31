@@ -39,7 +39,7 @@ class Ajax {
 			die( 'Only admin can access this page.' );
 		}
 
-		$data = Utils::get_slider( 207 );
+		$data = Utils::get_slider( 208 );
 		var_dump( $data );
 		die();
 	}
