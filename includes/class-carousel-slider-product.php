@@ -25,8 +25,8 @@ if ( ! class_exists( 'Carousel_Slider_Product' ) ) {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
 
-				add_action( 'carousel_slider_after_shop_loop_item', [ self::$instance, 'quick_view_button' ] );
-				add_action( 'carousel_slider_after_shop_loop_item', [ self::$instance, 'wish_list_button' ] );
+				add_action( 'carousel_slider_after_shop_loop_item', [ self::$instance, 'quick_view_button' ], 10, 3 );
+				add_action( 'carousel_slider_after_shop_loop_item', [ self::$instance, 'wish_list_button' ], 10, 3 );
 
 				add_action( 'wp_ajax_carousel_slider_quick_view', [ self::$instance, 'quick_view' ] );
 				add_action( 'wp_ajax_nopriv_carousel_slider_quick_view', array( self::$instance, 'quick_view' ) );
@@ -39,9 +39,11 @@ if ( ! class_exists( 'Carousel_Slider_Product' ) ) {
 		 * Show YITH Wishlist button on product slider
 		 *
 		 * @param WC_Product $product
+		 * @param WP_Post $post
+		 * @param int $carousel_id
 		 */
-		public static function wish_list_button( $product ) {
-			$show_wish_list = $product->get_meta( '_product_wishlist', true );
+		public static function wish_list_button( $product, $post, $carousel_id ) {
+			$show_wish_list = get_post_meta( $carousel_id, '_product_wishlist', true );
 
 			if ( class_exists( 'YITH_WCWL' ) && Validate::checked( $show_wish_list ) ) {
 				echo do_shortcode( '[yith_wcwl_add_to_wishlist product_id="' . $product->get_id() . '"]' );
@@ -52,9 +54,11 @@ if ( ! class_exists( 'Carousel_Slider_Product' ) ) {
 		 * Show quick view button on product slider
 		 *
 		 * @param WC_Product $product
+		 * @param WP_Post $post
+		 * @param int $carousel_id
 		 */
-		public static function quick_view_button( $product ) {
-			$_show_btn  = $product->get_meta( '_product_quick_view', true );
+		public static function quick_view_button( $product, $post, $carousel_id ) {
+			$_show_btn  = get_post_meta( $carousel_id, '_product_quick_view', true );
 			$product_id = $product->get_id();
 
 			if ( $_show_btn == 'on' ) {

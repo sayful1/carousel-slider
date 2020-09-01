@@ -4,7 +4,7 @@ use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
 use CarouselSlider\Utils;
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
@@ -13,7 +13,7 @@ if ( ! Utils::is_woocommerce_active() ) {
 		printf(
 			esc_html__( 'Carousel Slider needs %s to work for products carousel.', 'carousel-slider' ),
 			sprintf( '<a href="https://wordpress.org/plugins/woocommerce/" target="_blank" >%s</a>',
-				__( 'WooCommerce', 'carousel-slider' )
+				esc_html__( 'WooCommerce', 'carousel-slider' )
 			)
 		);
 	}

@@ -3,7 +3,7 @@
 use CarouselSlider\Utils;
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 $slide_types = carousel_slider_slide_type( false );

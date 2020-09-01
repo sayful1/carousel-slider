@@ -21,21 +21,16 @@ if ( ! class_exists( 'Carousel_Slider_Shortcode' ) ):
 		/**
 		 * Ensures only one instance of this class is loaded or can be loaded.
 		 *
-		 * @return Carousel_Slider_Shortcode
+		 * @return self
 		 */
 		public static function init() {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
+
+				add_shortcode( 'carousel_slide', [ self::$instance, 'carousel_slide' ] );
 			}
 
 			return self::$instance;
-		}
-
-		/**
-		 * CarouselSliderShortcode constructor.
-		 */
-		public function __construct() {
-			add_shortcode( 'carousel_slide', array( $this, 'carousel_slide' ) );
 		}
 
 		/**

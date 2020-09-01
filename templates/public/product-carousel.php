@@ -4,7 +4,7 @@ use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
 use CarouselSlider\Utils;
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 

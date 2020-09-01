@@ -187,10 +187,9 @@ if ( ! function_exists( 'carousel_slider_inline_style' ) ) {
 	/**
 	 * Get carousel slider inline style
 	 *
-	 * @param $carousel_id
+	 * @param int $id
 	 */
-	function carousel_slider_inline_style( $carousel_id ) {
-		$id                      = $carousel_id;
+	function carousel_slider_inline_style( $id ) {
 		$_nav_color              = get_post_meta( $id, '_nav_color', true );
 		$_nav_active_color       = get_post_meta( $id, '_nav_active_color', true );
 		$_product_title_color    = get_post_meta( $id, '_product_title_color', true );
@@ -199,7 +198,7 @@ if ( ! function_exists( 'carousel_slider_inline_style' ) ) {
 		$content_sliders         = get_post_meta( $id, '_content_slider', true );
 
 		$slide_type = get_post_meta( $id, '_slide_type', true );
-		$slide_type = array_key_exists( $slide_type, CarouselSlider\Utils::slide_type() ) ? $slide_type : 'image-carousel';
+		$slide_type = array_key_exists( $slide_type, Utils::slide_type() ) ? $slide_type : 'image-carousel';
 
 		$_arrow_size = get_post_meta( $id, '_arrow_size', true );
 		$_arrow_size = empty( $_arrow_size ) ? 48 : absint( $_arrow_size );
