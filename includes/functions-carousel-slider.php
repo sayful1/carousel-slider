@@ -3,10 +3,10 @@
 use CarouselSlider\Carousels\PostCarousel\PostUtils;
 use CarouselSlider\Carousels\ProductCarousel\ProductUtils;
 use CarouselSlider\Supports\Sanitize;
+use CarouselSlider\Supports\Validate;
+use CarouselSlider\Utils;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die; // If this file is called directly, abort.
-}
+defined( 'ABSPATH' ) || die;
 
 if ( ! function_exists( 'carousel_slider_is_url' ) ) {
 	/**
@@ -17,9 +17,9 @@ if ( ! function_exists( 'carousel_slider_is_url' ) ) {
 	 * @return boolean
 	 */
 	function carousel_slider_is_url( $url ) {
-		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Supports\Validate::url()' );
+		_deprecated_function( __FUNCTION__, '2.0.0', Validate::class . '::url()' );
 
-		return CarouselSlider\Supports\Validate::url( $url );
+		return Validate::url( $url );
 	}
 }
 
@@ -32,9 +32,9 @@ if ( ! function_exists( 'carousel_slider_sanitize_color' ) ) {
 	 * @return mixed|string
 	 */
 	function carousel_slider_sanitize_color( $color ) {
-		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Supports\Sanitize::color()' );
+		_deprecated_function( __FUNCTION__, '2.0.0', Sanitize::class . '::color()' );
 
-		return CarouselSlider\Supports\Sanitize::color( $color );
+		return Sanitize::color( $color );
 	}
 }
 
@@ -66,9 +66,9 @@ if ( ! function_exists( 'carousel_slider_array_to_attribute' ) ) {
 	 * @return array|string
 	 */
 	function carousel_slider_array_to_attribute( $array ) {
-		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::array_to_attributes()' );
+		_deprecated_function( __FUNCTION__, '2.0.0', Utils::class . '::array_to_attributes()' );
 
-		return CarouselSlider\Utils::array_to_attributes( $array );
+		return Utils::array_to_attributes( $array );
 	}
 }
 
@@ -79,9 +79,9 @@ if ( ! function_exists( 'carousel_slider_is_woocommerce_active' ) ) {
 	 * @return bool
 	 */
 	function carousel_slider_is_woocommerce_active() {
-		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::is_woocommerce_active()' );
+		_deprecated_function( __FUNCTION__, '2.0.0', Utils::class . '::is_woocommerce_active()' );
 
-		return CarouselSlider\Utils::is_woocommerce_active();
+		return Utils::is_woocommerce_active();
 	}
 }
 
@@ -112,6 +112,74 @@ if ( ! function_exists( 'carousel_slider_products' ) ) {
 		_deprecated_function( __FUNCTION__, '2.0.0', ProductUtils::class . '::get_products()' );
 
 		return ProductUtils::get_products( $id );
+	}
+}
+
+if ( ! function_exists( 'carousel_slider_slide_type' ) ) {
+	/**
+	 * Get carousel slider available slide type
+	 *
+	 * @param bool $key_only
+	 *
+	 * @return array
+	 */
+	function carousel_slider_slide_type( $key_only = true ) {
+		_deprecated_function( __FUNCTION__, '2.0.0', Utils::class . '::slide_type()' );
+
+		$types = Utils::slide_type();
+
+		if ( $key_only ) {
+			return array_keys( $types );
+		}
+
+		return $types;
+	}
+}
+
+if ( ! function_exists( 'carousel_slider_background_position' ) ) {
+	/**
+	 * @param bool $key_only
+	 *
+	 * @return array
+	 */
+	function carousel_slider_background_position( $key_only = false ) {
+		_deprecated_function( __FUNCTION__, '2.0.0', Utils::class . '::background_position()' );
+
+		$positions = Utils::background_position();
+		if ( $key_only ) {
+			return array_keys( $positions );
+		}
+
+		return $positions;
+	}
+}
+
+if ( ! function_exists( 'carousel_slider_background_size' ) ) {
+	/**
+	 * @param bool $key_only
+	 *
+	 * @return array
+	 */
+	function carousel_slider_background_size( $key_only = false ) {
+		_deprecated_function( __FUNCTION__, '2.0.0', Utils::class . '::background_size()' );
+
+		$sizes = Utils::background_size();
+		if ( $key_only ) {
+			return array_keys( $sizes );
+		}
+
+		return $sizes;
+	}
+}
+
+if ( ! function_exists( 'carousel_slider_default_settings' ) ) {
+	function carousel_slider_default_settings() {
+		_deprecated_function( __FUNCTION__, '2.0.0', Utils::class . '::default_settings()' );
+
+		$options = Utils::default_settings();
+		$options = json_decode( json_encode( $options ), false );
+
+		return $options;
 	}
 }
 
@@ -287,73 +355,5 @@ if ( ! function_exists( 'carousel_slider_inline_style' ) ) {
 		}
 
 		echo "</style>";
-	}
-}
-
-if ( ! function_exists( 'carousel_slider_slide_type' ) ) {
-	/**
-	 * Get carousel slider available slide type
-	 *
-	 * @param bool $key_only
-	 *
-	 * @return array
-	 */
-	function carousel_slider_slide_type( $key_only = true ) {
-		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::slide_type()' );
-
-		$types = CarouselSlider\Utils::slide_type();
-
-		if ( $key_only ) {
-			return array_keys( $types );
-		}
-
-		return $types;
-	}
-}
-
-if ( ! function_exists( 'carousel_slider_background_position' ) ) {
-	/**
-	 * @param bool $key_only
-	 *
-	 * @return array
-	 */
-	function carousel_slider_background_position( $key_only = false ) {
-		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::background_position()' );
-
-		$positions = CarouselSlider\Utils::background_position();
-		if ( $key_only ) {
-			return array_keys( $positions );
-		}
-
-		return $positions;
-	}
-}
-
-if ( ! function_exists( 'carousel_slider_background_size' ) ) {
-	/**
-	 * @param bool $key_only
-	 *
-	 * @return array
-	 */
-	function carousel_slider_background_size( $key_only = false ) {
-		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::background_size()' );
-
-		$sizes = CarouselSlider\Utils::background_size();
-		if ( $key_only ) {
-			return array_keys( $sizes );
-		}
-
-		return $sizes;
-	}
-}
-
-if ( ! function_exists( 'carousel_slider_default_settings' ) ) {
-	function carousel_slider_default_settings() {
-		_deprecated_function( __FUNCTION__, '2.0.0', '\CarouselSlider\Utils::default_settings()' );
-
-		$options = CarouselSlider\Utils::default_settings();
-		$options = json_decode( json_encode( $options ), false );
-
-		return $options;
 	}
 }
