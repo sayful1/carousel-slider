@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack --mode=development --progress --watch",
     "dev-build": "webpack --mode=development",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "create_sliders": "wp carousel-slider create_sliders"
   },
   "browserslist": [
     "last 2 years",
@@ -48,16 +49,16 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@wordpress/block-editor": "^12.13.0",
-    "@wordpress/blocks": "^12.22.0",
-    "@wordpress/components": "^25.11.0",
+    "@wordpress/block-editor": "^14.16.0",
+    "@wordpress/blocks": "^14.10.0",
+    "@wordpress/components": "^29.7.0",
     "jquery": "^3.7.1",
-    "magnific-popup": "^1.1.0",
+    "magnific-popup": "^1.2.0",
     "owl.carousel": "^2.3.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "select2": "^4.0",
-    "shapla-css": "^2.6.1",
-    "swiper": "^11.0.4"
+    "shapla-css": "^2.6.7",
+    "swiper": "^11.2.6"
   }
 }

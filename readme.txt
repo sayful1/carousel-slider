@@ -85,6 +85,9 @@ a dedicated 'carousel slider' block with live preview for Gutenberg Block Editor
 
 == Changelog ==
 
+= version 2.2.15 - 2024-10-10 =
+* Fix - Fix XSS security vulnerability via Magnific Popups JavaScript Library
+
 = version 2.2.14 - 2024-08-20 =
 * Fix - Fix XSS security vulnerability from slide edit page for Hero Carousel. (reported by Bob)
 
