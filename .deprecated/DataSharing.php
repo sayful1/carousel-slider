@@ -1,8 +1,8 @@
 <?php
 
-namespace CarouselSlider\Supports\FormFields;
+namespace CarouselSlider;
 
-use CarouselSlider\TrackingData;
+use CarouselSlider\Supports\FormFields\BaseField;
 
 /**
  * DataSharing class

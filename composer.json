@@ -37,7 +37,8 @@
     "make-pot": "wp i18n make-pot . languages/carousel-slider.pot",
     "test": "phpunit",
     "lint": "phpcs --standard=phpcs.xml",
-    "format": "phpcbf --standard=phpcs.xml"
+    "format": "phpcbf --standard=phpcs.xml",
+    "plugin-check": "wp plugin check carousel-slider/carousel-slider.php"
   },
   "config": {
     "allow-plugins": {

@@ -1,10 +1,6 @@
 <?php
 
-namespace CarouselSlider\Admin;
-
-use CarouselSlider\Api;
-use CarouselSlider\Helper;
-use CarouselSlider\TrackingData;
+namespace CarouselSlider;
 
 // If this file is called directly, abort.
 defined( 'ABSPATH' ) || exit;

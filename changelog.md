@@ -1,3 +1,8 @@
+#### version 2.2.16 - 2025-04-10
+
+* Remove data sharing and feedback functionality.
+* Test with WordPress 6.8 and WooCommerce 9.8
+
 #### version 2.2.15 - 2024-10-10
 
 * Fix - Fix XSS security vulnerability via Magnific Popups JavaScript Library

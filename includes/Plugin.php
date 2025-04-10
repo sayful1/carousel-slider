@@ -3,7 +3,6 @@
 namespace CarouselSlider;
 
 use CarouselSlider\Admin\Admin;
-use CarouselSlider\Admin\Feedback;
 use CarouselSlider\Admin\GutenbergBlock;
 use CarouselSlider\Admin\MetaBox;
 use CarouselSlider\Admin\PreviewMetaBox;
@@ -101,7 +100,6 @@ class Plugin {
 		add_action( 'init', [ $this, 'register_post_type' ] );
 
 		$this->container['assets']   = Assets::init();
-		$this->container['feedback'] = Feedback::init();
 		$this->container['widget']   = CarouselSliderWidget::init();
 
 		// Load classes for admin area.

@@ -10,7 +10,6 @@ use CarouselSlider\Supports\FormFields\ButtonGroup;
 use CarouselSlider\Supports\FormFields\Checkbox;
 use CarouselSlider\Supports\FormFields\CheckboxSwitch;
 use CarouselSlider\Supports\FormFields\Color;
-use CarouselSlider\Supports\FormFields\DataSharing;
 use CarouselSlider\Supports\FormFields\ImagesGallery;
 use CarouselSlider\Supports\FormFields\ImageUploader;
 use CarouselSlider\Supports\FormFields\ImageUrl;
@@ -178,7 +177,6 @@ class FormBuilder implements FormBuilderInterface {
 				'radio'          => Radio::class,
 				'switch'         => CheckboxSwitch::class,
 				'breakpoint'     => Breakpoint::class,
-				'data_sharing'   => DataSharing::class,
 			]
 		);
 

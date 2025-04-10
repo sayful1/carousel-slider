@@ -91,14 +91,6 @@ class Setting {
 				'priority' => 20,
 			)
 		);
-		$settings->set_panel(
-			array(
-				'id'                 => 'panel_extra',
-				'title'              => __( 'Extra', 'carousel-slider' ),
-				'priority'           => 20,
-				'hide_submit_button' => true,
-			)
-		);
 
 		$settings->add_field(
 			array(
@@ -200,20 +192,6 @@ class Setting {
 				),
 				'choices'     => $choices,
 				'panel'       => 'woocommerce',
-			)
-		);
-		$settings->add_field(
-			array(
-				'id'         => 'carousel_slider_allow_tracking',
-				'type'       => 'data_sharing',
-				'title'      => __( 'Data sharing', 'carousel-slider' ),
-				'label'      => __(
-					'Allow Carousel Slider to collect non-sensitive diagnostic data and usage information.',
-					'carousel-slider'
-				),
-				'panel'      => 'panel_extra',
-				'priority'   => 30,
-				'standalone' => true,
 			)
 		);
 	}

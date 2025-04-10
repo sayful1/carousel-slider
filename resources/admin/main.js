@@ -11,7 +11,6 @@ import '@/admin/carousels/post-carousel.js';
 import '@/admin/carousels/product-carousel.js';
 import '@/admin/carousels/video-carousel.ts';
 import '@/admin/add-new.ts';
-import '@/admin/input-data-sharing.ts';
 import '@/admin/preview.ts';
 
 let elements = document.querySelectorAll(".cs-tooltip");
