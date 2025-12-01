@@ -26,10 +26,10 @@ interface SliderSettingInterface extends ArrayAccess, JsonSerializable {
 	public function get_slider_type(): string;
 
 	/**
-	 * Get global option for key
+	 * Get the global option for a key
 	 *
 	 * @param  string $key  option key.
-	 * @param  mixed  $default_value  default value to return if data key does not exist.
+	 * @param  mixed  $default_value  default value to return if a data key does not exist.
 	 *
 	 * @return mixed The key's value, or the default value
 	 */
@@ -37,10 +37,10 @@ interface SliderSettingInterface extends ArrayAccess, JsonSerializable {
 
 	/**
 	 * Get option for key
-	 * If there is no option for key, return from global option.
+	 * If there is no option for a key, return from the global option.
 	 *
 	 * @param  string $key  option key.
-	 * @param  mixed  $default_value  default value to return if data key does not exist.
+	 * @param  mixed  $default_value  default value to return if the data key does not exist.
 	 *
 	 * @return mixed The key's value, or the default value
 	 */

@@ -55,7 +55,7 @@ class SliderSetting extends Data implements SliderSettingInterface {
 	protected $slider_type = null;
 
 	/**
-	 * Is data read from server?
+	 * Is data read from the server?
 	 *
 	 * @var bool
 	 */
@@ -122,10 +122,10 @@ class SliderSetting extends Data implements SliderSettingInterface {
 
 	/**
 	 * Get option for key
-	 * If there is no option for key, return from global option.
+	 * If there is no option for a key, return it from the global option.
 	 *
 	 * @param  string $key  option key.
-	 * @param  mixed  $default_value  default value to return if data key does not exist.
+	 * @param  mixed  $default_value  default value to return if a data key does not exist.
 	 *
 	 * @return mixed The key's value, or the default value
 	 */
@@ -187,7 +187,7 @@ class SliderSetting extends Data implements SliderSettingInterface {
 	}
 
 	/**
-	 * If it should lazy load image
+	 * If it should lazily load image
 	 *
 	 * @return bool
 	 */
@@ -220,9 +220,7 @@ class SliderSetting extends Data implements SliderSettingInterface {
 	public function get_nav_visibility(): string {
 		$value = $this->get_prop( 'nav_visibility' );
 		// For backup compatability.
-		$value = str_replace( array( 'off', 'on' ), array( 'never', 'hover' ), $value );
-
-		return $value;
+		return str_replace( array( 'off', 'on' ), array( 'never', 'hover' ), $value );
 	}
 
 	/**
@@ -271,9 +269,7 @@ class SliderSetting extends Data implements SliderSettingInterface {
 	public function get_pagination_visibility(): string {
 		$value = $this->get_prop( 'pagination_visibility' );
 		// For backup compatability.
-		$value = str_replace( array( 'off', 'on' ), array( 'never', 'always' ), $value );
-
-		return $value;
+		return str_replace( array( 'off', 'on' ), array( 'never', 'always' ), $value );
 	}
 
 	/**
@@ -356,7 +352,7 @@ class SliderSetting extends Data implements SliderSettingInterface {
 	}
 
 	/**
-	 * Read setting from database
+	 * Read setting from the database
 	 *
 	 * @param  array $values  The value to be read.
 	 *
@@ -477,7 +473,7 @@ class SliderSetting extends Data implements SliderSettingInterface {
 	}
 
 	/**
-	 * Prepare item for database store
+	 * Prepare item for the database store
 	 *
 	 * @param  mixed $value  The value to be sanitized.
 	 * @param  array $setting  The field setting.

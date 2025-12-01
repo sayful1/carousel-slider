@@ -9,7 +9,7 @@ use CarouselSlider\Abstracts\SliderSetting;
  */
 class Setting extends SliderSetting {
 	/**
-	 * Is data read from server?
+	 * Is data read from the server?
 	 *
 	 * @var bool
 	 */

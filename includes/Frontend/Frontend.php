@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Frontend class
  *
- * The frontend functionality specific class of the plugin
+ * The frontend-functionality-specific class of the plugin
  */
 class Frontend {
 
@@ -62,7 +62,7 @@ class Frontend {
 		$slide_type = get_post_meta( $slider_id, '_slide_type', true );
 		$slide_type = array_key_exists( $slide_type, Helper::get_slide_types() ) ? $slide_type : 'image-carousel';
 
-		// If script & style is not enqueued yet, then enqueued it now.
+		// If the scripts and styles are not enqueued yet, then enqueued it now.
 		$this->load_scripts_if_not_loaded();
 
 		$view = Helper::get_slider_view( $slide_type );

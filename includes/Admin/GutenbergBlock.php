@@ -30,7 +30,7 @@ class GutenbergBlock {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 
-			add_action( 'init', array( self::$instance, 'gutenberg_block' ) );
+			self::$instance->gutenberg_block();
 		}
 
 		return self::$instance;

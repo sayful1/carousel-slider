@@ -37,21 +37,10 @@ class Module {
 			add_action( 'wp_ajax_carousel_slider_quick_view', [ self::$instance, 'quick_view' ] );
 			add_action( 'wp_ajax_nopriv_carousel_slider_quick_view', [ self::$instance, 'quick_view' ] );
 
-			add_action( 'before_woocommerce_init', [ self::$instance, 'declaring_extension_compatibility' ] );
-
 			Admin::init();
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * Declaring extension compatibility
-	 */
-	public function declaring_extension_compatibility() {
-		if ( class_exists( FeaturesUtil::class ) ) {
-			FeaturesUtil::declare_compatibility( 'custom_order_tables', CAROUSEL_SLIDER_FILE, true );
-		}
 	}
 
 	/**
@@ -92,7 +81,7 @@ class Module {
 	}
 
 	/**
-	 * Show YITH Wishlist button on product slider
+	 * Show YITH Wishlist button on the product slider
 	 *
 	 * @param  WC_Product $product  The WC_Product object.
 	 * @param  int        $slider_id  The slider id.
@@ -125,7 +114,7 @@ class Module {
 	}
 
 	/**
-	 * Get quick view html
+	 * Get quick view HTML
 	 *
 	 * @param  WC_Product $product  The WC_Product object.
 	 *

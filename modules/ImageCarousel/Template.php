@@ -33,12 +33,12 @@ class Template extends AbstractTemplate {
 	}
 
 	/**
-	 * Create gallery image carousel with random images
+	 * Create a gallery image carousel with random images
 	 *
 	 * @param string $slider_title The slider title.
 	 * @param array  $args Arguments.
 	 *
-	 * @return int The post ID on success. The value 0 on failure.
+	 * @return int The WP_Post ID on success. Value 0 on failure.
 	 */
 	public static function create( $slider_title = '', $args = [] ): int {
 		$images = self::get_images();

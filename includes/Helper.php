@@ -63,7 +63,7 @@ class Helper extends ViewHelper {
 	}
 
 	/**
-	 * Check if pro version is active.
+	 * Check if the pro-version is active.
 	 *
 	 * @return bool
 	 */
@@ -72,7 +72,7 @@ class Helper extends ViewHelper {
 	}
 
 	/**
-	 * Should it show pro features?
+	 * Should it show pro-features?
 	 *
 	 * @return bool
 	 */
@@ -89,7 +89,7 @@ class Helper extends ViewHelper {
 	 *
 	 * @param  array $args  Optional arguments.
 	 *
-	 * @return WP_Post[]|int[] Array of post objects or post IDs.
+	 * @return WP_Post[]|int[] Array of WP_Post objects or IDs.
 	 */
 	public static function get_sliders( array $args = [] ): array {
 		$args = wp_parse_args(
@@ -205,10 +205,9 @@ class Helper extends ViewHelper {
 	 * @return array
 	 */
 	public static function get_slide_types(): array {
-		$types = [];
-		foreach ( self::get_slider_types() as $slug => $args ) {
-			$types[ $slug ] = $args['label'];
-		}
+		$types = array_map( function ( $args ) {
+			return $args['label'];
+		}, self::get_slider_types() );
 
 		return apply_filters( 'carousel_slider_slide_type', $types );
 	}
@@ -467,7 +466,7 @@ class Helper extends ViewHelper {
 	 * @param  string $type  The slider type.
 	 * @param  array  $args  Additional arguments.
 	 *
-	 * @return int|WP_Error The post ID on success. The value 0 or \WP_Error on failure.
+	 * @return int|WP_Error The WP_Post ID on success. The value 0 or \WP_Error on failure.
 	 */
 	public static function create_slider( string $title, string $type = '', array $args = [] ) {
 		$data = wp_parse_args(

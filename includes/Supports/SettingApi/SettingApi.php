@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
  * Very simple WordPress Settings API wrapper class
  *
  * WordPress Option Page Wrapper class that implements WordPress Settings API and
- * give you easy way to create multi tabs admin menu and
+ *  gives you an easy way to create a multi tabs admin menu and
  * add setting fields with build in validation.
  *
  * @author  Sayful Islam <sayful.islam001@gmail.com>
@@ -81,9 +81,9 @@ class SettingApi {
 	}
 
 	/**
-	 * Add new admin menu
+	 * Add a new admin menu
 	 *
-	 * This method is accessible outside the class for creating menu
+	 * This method is accessible outside the class for creating a menu
 	 *
 	 * @param  array $menu_fields  The setting arguments.
 	 *
@@ -185,7 +185,7 @@ class SettingApi {
 	}
 
 	/**
-	 * Get options parsed with default value
+	 * Get options parsed with the default value
 	 *
 	 * @return array
 	 */
@@ -320,7 +320,7 @@ class SettingApi {
 	/**
 	 * Add setting page tab
 	 *
-	 * This method is accessible outside the class for creating page tab
+	 * This method is accessible outside the class for creating a page tab
 	 *
 	 * @param  array $panel  The setting arguments.
 	 *
@@ -343,7 +343,7 @@ class SettingApi {
 	}
 
 	/**
-	 * Add Setting page section
+	 * Add a Setting page section
 	 *
 	 * @param  array $section  The setting arguments.
 	 *
@@ -367,7 +367,7 @@ class SettingApi {
 	}
 
 	/**
-	 * Add new settings field
+	 * Add a new settings field
 	 * This method is accessible outside the class for creating settings field
 	 *
 	 * @param  array $field  The setting arguments.
@@ -418,7 +418,7 @@ class SettingApi {
 	}
 
 	/**
-	 * Set option name
+	 * Set an option name
 	 *
 	 * @param  string $option_name  The option name.
 	 *

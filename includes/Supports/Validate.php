@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Validate {
 	/**
-	 * Check if url is valid as per RFC 2396 Generic Syntax
+	 * Check if the url is valid as per RFC 2396 Generic Syntax
 	 *
 	 * @param mixed $url The URL string.
 	 *
@@ -33,7 +33,7 @@ class Validate {
 	}
 
 	/**
-	 * Check if value is json
+	 * Check if the value is JSON
 	 *
 	 * @param mixed $value The value to be checked.
 	 *

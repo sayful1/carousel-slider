@@ -161,7 +161,7 @@ abstract class BaseField implements FieldInterface {
 	/**
 	 * Convert array to input attributes
 	 *
-	 * @param array $attributes The attributes list.
+	 * @param array $attributes The attribute list.
 	 *
 	 * @return string
 	 */
@@ -198,7 +198,7 @@ abstract class BaseField implements FieldInterface {
 	/**
 	 * Add extra attributes
 	 *
-	 * @param array $attributes The attributes list.
+	 * @param array $attributes The attribute list.
 	 */
 	protected function add_extra_attributes( array &$attributes ) {
 		$input_type       = $this->get_setting( 'type' );

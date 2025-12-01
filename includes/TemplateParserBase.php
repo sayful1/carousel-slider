@@ -18,7 +18,7 @@ class TemplateParserBase implements TemplateParserInterface {
 	protected $template = '';
 
 	/**
-	 * The object that will be used to replace placeholder
+	 * The object that will be used to replace the placeholder
 	 *
 	 * @var mixed
 	 */
@@ -64,7 +64,7 @@ class TemplateParserBase implements TemplateParserInterface {
 	}
 
 	/**
-	 * Set template file name
+	 * Set the template file name
 	 *
 	 * @param string $template The template file name.
 	 */
@@ -189,14 +189,14 @@ class TemplateParserBase implements TemplateParserInterface {
 	/**
 	 * Handle conditional tags
 	 *
-	 * @param string $subject The html content to check.
+	 * @param string $subject The HTML content to check.
 	 *
 	 * @return string|null
 	 */
 	public function handle_conditional_tags( string $subject ) {
 		$regex  = '/'; // Start of Regex.
 		$regex .= '<!--\s*{if\s*\((?P<condition>\s*.*)\)}\s*-->\s*'; // Start of condition.
-		$regex .= '(?P<html>\s*.*)'; // Grab the html.
+		$regex .= '(?P<html>\s*.*)'; // Grab the HTML.
 		$regex .= '\s*<!--\s{endif}\s-->'; // End of condition.
 		$regex .= '/i'; // Regex options.
 

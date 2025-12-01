@@ -41,7 +41,7 @@ class Item extends Data {
 	/**
 	 * Get video id
 	 *
-	 * @return string|int youtube, vimeo or integer value for self hosted video.
+	 * @return string|int YouTube, vimeo or integer value for self-hosted video.
 	 */
 	public function get_video_id() {
 		return $this->get_prop( 'video_id' );

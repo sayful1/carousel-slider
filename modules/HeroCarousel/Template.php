@@ -114,12 +114,12 @@ class Template extends AbstractTemplate {
 	}
 
 	/**
-	 * Create hero carousel with random images
+	 * Create a hero carousel with random images
 	 *
 	 * @param  string $slider_title  The slider title.
 	 * @param  array  $args  Additional arguments.
 	 *
-	 * @return int The post ID on success. The value 0 on failure.
+	 * @return int The WP_Post ID on success. Value 0 on failure.
 	 */
 	public static function create( string $slider_title = '', array $args = [] ): int {
 		if ( empty( $slider_title ) ) {

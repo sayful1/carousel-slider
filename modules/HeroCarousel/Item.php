@@ -562,7 +562,7 @@ class Item extends Data {
 	}
 
 	/**
-	 * Get cell start html
+	 * Get cell start HTML
 	 *
 	 * @return string
 	 */
@@ -593,7 +593,7 @@ class Item extends Data {
 	}
 
 	/**
-	 * Get cell end html
+	 * Get cell end HTML
 	 *
 	 * @return string
 	 */

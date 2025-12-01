@@ -120,7 +120,7 @@ class Upgrader {
 			static::fix_product_query_type_typo_error();
 		}
 
-		// Add plugin version to database.
+		// Add a plugin version to the database.
 		update_option( 'carousel_slider_version', CAROUSEL_SLIDER_VERSION );
 
 		$message .= '<p>' . __( 'Database upgrade process has been started.', 'carousel-slider' ) . '</p>';
@@ -168,7 +168,7 @@ class Upgrader {
 	/**
 	 * Get sliders ids
 	 *
-	 * @return array
+	 * @return int[]
 	 */
 	public static function get_sliders_ids(): array {
 		global $wpdb;

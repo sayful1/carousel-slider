@@ -3,7 +3,7 @@
 namespace CarouselSlider\Supports\FormFields;
 
 /**
- * Html class
+ * HTML class
  */
 class Html extends BaseField {
 

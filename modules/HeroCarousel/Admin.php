@@ -717,7 +717,7 @@ class Admin {
 	}
 
 	/**
-	 * Get action html
+	 * Get action HTML
 	 *
 	 * @param int $slider_id The slider id.
 	 * @param int $item_index The slider item index number.

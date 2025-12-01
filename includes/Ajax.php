@@ -37,7 +37,7 @@ class Ajax {
 	}
 
 	/**
-	 * A AJAX method just to test some data
+	 * An AJAX method just to test some data
 	 */
 	public function test() {
 		if ( ! current_user_can( 'manage_options' ) ) {

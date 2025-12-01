@@ -146,7 +146,7 @@ class Sanitize {
 	}
 
 	/**
-	 * Sanitize short block html input
+	 * Sanitize short block HTML input
 	 *
 	 * @param  mixed $value  The value to be sanitized.
 	 *
@@ -219,7 +219,7 @@ class Sanitize {
 	}
 
 	/**
-	 * Sanitize array of integer
+	 * Sanitize an array of integer
 	 *
 	 * @param  mixed $value  The value to be sanitized.
 	 *

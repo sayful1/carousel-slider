@@ -6,7 +6,7 @@ use CarouselSlider\Helper;
 
 /**
  * OwlSetting class
- * The owl carousel javascript option generator.
+ * The owl carousel JavaScript option generator.
  *
  * @package CarouselSlider/Abstracts
  */

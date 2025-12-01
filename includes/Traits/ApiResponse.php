@@ -44,7 +44,7 @@ trait ApiResponse {
 
 	/**
 	 * Decode HTML entity
-	 * WordPress encode html entity when saving on database.
+	 * WordPress encode HTML entity when saving to the database.
 	 * Convert then back to character before sending data
 	 *
 	 * @param mixed $value The value to be decoded.
@@ -69,7 +69,7 @@ trait ApiResponse {
 	}
 
 	/**
-	 * Set HTTP status code.
+	 * Set the HTTP status code.
 	 *
 	 * @param int $status_code The http status code.
 	 *
@@ -194,7 +194,7 @@ trait ApiResponse {
 	}
 
 	/**
-	 * Set additional response header
+	 * Set additional response headers
 	 *
 	 * @param array $headers Additional headers.
 	 *
@@ -399,7 +399,7 @@ trait ApiResponse {
 
 	/**
 	 * 201 (Created)
-	 * The request has succeeded and a new resource has been created as a result of it.
+	 * The request has succeeded, and a new resource has been created as a result of it.
 	 * This is typically the response sent after a POST request, or after some PUT requests.
 	 *
 	 * @param mixed       $data The data to be sent for response.
@@ -492,7 +492,7 @@ trait ApiResponse {
 
 	/**
 	 * 404 (Not Found)
-	 * The server can not find requested resource. In an API, this can also mean that the endpoint is valid but
+	 * The server cannot find the requested resource. In an API, this can also mean that the endpoint is valid but
 	 * the resource itself does not exist. Servers may also send this response instead of 403 to hide
 	 * the existence of a resource from an unauthorized client.
 	 *

@@ -37,7 +37,7 @@ class PreviewMetaBox {
 	/**
 	 * Add carousel slider meta box
 	 *
-	 * @param  string $post_type  The post type.
+	 * @param  string $post_type  The post-type.
 	 */
 	public function add_meta_boxes( $post_type ) {
 		if ( CAROUSEL_SLIDER_POST_TYPE !== $post_type ) {
@@ -66,7 +66,7 @@ class PreviewMetaBox {
 	}
 
 	/**
-	 * Send preview meta box
+	 * Send preview meta-box
 	 *
 	 * @return void
 	 */

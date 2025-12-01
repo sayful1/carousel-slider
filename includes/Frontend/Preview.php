@@ -52,7 +52,7 @@ class Preview {
 	}
 
 	/**
-	 * Preview html
+	 * Preview HTML
 	 *
 	 * @return string
 	 */

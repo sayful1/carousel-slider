@@ -28,12 +28,10 @@ class Autoloader {
 	/**
 	 * Adds a base directory for a namespace prefix.
 	 *
-	 * @param string $prefix   The namespace prefix.
-	 * @param string $base_dir A base directory for class files in the
-	 *                         namespace.
-	 * @param bool   $prepend  If true, prepend the base directory to the stack
-	 *                         instead of appending it; this causes it to be searched first rather
-	 *                         than last.
+	 * @param  string  $prefix  The namespace prefix.
+	 * @param  string  $base_dir  A base directory for class files in the namespace.
+	 * @param  bool  $prepend  If true, prepend the base directory to the stack instead of appending it;
+	 *                         this causes it to be searched first rather than last.
 	 *
 	 * @return void
 	 */
@@ -60,7 +58,7 @@ class Autoloader {
 	/**
 	 * Loads the class file for a given class name.
 	 *
-	 * @param string $class_name The fully-qualified class name.
+	 * @param  string  $class_name  The fully qualified class name.
 	 *
 	 * @return mixed The mapped file name on success, or boolean false on
 	 * failure.
@@ -69,7 +67,7 @@ class Autoloader {
 		// the current namespace prefix.
 		$prefix = $class_name;
 
-		// work backwards through the namespace names of the fully-qualified
+		// work backwards through the namespace names of the fully qualified
 		// class name to find a mapped file name.
 		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( false !== $pos = strrpos( $prefix, '\\' ) ) {
@@ -98,10 +96,10 @@ class Autoloader {
 	/**
 	 * Load the mapped file for a namespace prefix and relative class.
 	 *
-	 * @param string $prefix         The namespace prefix.
-	 * @param string $relative_class The relative class name.
+	 * @param  string  $prefix  The namespace prefix.
+	 * @param  string  $relative_class  The relative class name.
 	 *
-	 * @return mixed Boolean false if no mapped file can be loaded, or the
+	 * @return false|string Boolean false if no mapped file can be loaded, or the
 	 * name of the mapped file that was loaded.
 	 */
 	protected function load_mapped_file( $prefix, $relative_class ) {
@@ -117,8 +115,8 @@ class Autoloader {
 			// replace namespace separators with directory separators
 			// in the relative class name, append with .php extension.
 			$file = $base_dir
-					. str_replace( '\\', '/', $relative_class )
-					. '.php';
+			        . str_replace( '\\', '/', $relative_class )
+			        . '.php';
 
 			// if the mapped file exists, require it.
 			if ( $this->require_file( $file ) ) {
@@ -134,7 +132,7 @@ class Autoloader {
 	/**
 	 * If a file exists, require it from the file system.
 	 *
-	 * @param string $file The file to require.
+	 * @param  string  $file  The file to require.
 	 *
 	 * @return bool True if the file exists, false if not.
 	 */

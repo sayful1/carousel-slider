@@ -31,7 +31,7 @@ class Data implements ArrayAccess, JsonSerializable {
 	}
 
 	/**
-	 * Get collection item for key
+	 * Get collection item for a key
 	 *
 	 * @param string $name The property name.
 	 *
@@ -83,10 +83,10 @@ class Data implements ArrayAccess, JsonSerializable {
 	}
 
 	/**
-	 * Get collection item for key
+	 * Get collection item for a key
 	 *
 	 * @param string $key The data key.
-	 * @param mixed  $default_value The default value to return if data key does not exist.
+	 * @param mixed  $default_value The default value to return if the data key does not exist.
 	 *
 	 * @return mixed The key's value, or the default value
 	 */
@@ -99,7 +99,7 @@ class Data implements ArrayAccess, JsonSerializable {
 	}
 
 	/**
-	 * Remove item from collection
+	 * Remove item from the collection
 	 *
 	 * @param string $key The data key.
 	 */
@@ -160,7 +160,7 @@ class Data implements ArrayAccess, JsonSerializable {
 	/**
 	 * Specify data which should be serialized to JSON
 	 *
-	 * @return array data which can be serialized by json_encode
+	 * @return array data, which can be serialized by json_encode
 	 * which is a value of any type other than a resource.
 	 */
 	public function jsonSerialize(): array {

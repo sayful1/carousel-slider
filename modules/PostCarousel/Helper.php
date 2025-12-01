@@ -20,7 +20,7 @@ class Helper {
 	 * @return WP_Post[]
 	 */
 	public static function get_posts( int $slider_id ): array {
-		// Get settings from carousel slider.
+		// Get settings from the carousel slider.
 		$order      = get_post_meta( $slider_id, '_post_order', true );
 		$orderby    = get_post_meta( $slider_id, '_post_orderby', true );
 		$per_page   = intval( get_post_meta( $slider_id, '_posts_per_page', true ) );
@@ -35,7 +35,7 @@ class Helper {
 			'posts_per_page' => $per_page,
 		];
 
-		// Get posts by post IDs.
+		// Get posts by WP_Post IDs.
 		if ( 'specific_posts' === $query_type ) {
 			$post_in = explode( ',', get_post_meta( $slider_id, '_post_in', true ) );
 			$post_in = array_map( 'intval', $post_in );
@@ -49,7 +49,7 @@ class Helper {
 			$args            = array_merge( $args, array( 'cat' => $post_categories ) );
 		}
 
-		// Get posts by post tags IDs.
+		// Get posts by WP_Post tags IDs.
 		if ( 'post_tags' === $query_type ) {
 			$post_tags = get_post_meta( $slider_id, '_post_tags', true );
 			$post_tags = array_map( 'intval', explode( ',', $post_tags ) );

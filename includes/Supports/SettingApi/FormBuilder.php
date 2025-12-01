@@ -39,7 +39,7 @@ class FormBuilder implements FormBuilderInterface {
 	protected $option_name = null;
 
 	/**
-	 * The fields settings
+	 * The field settings
 	 *
 	 * @var array
 	 */
@@ -64,7 +64,7 @@ class FormBuilder implements FormBuilderInterface {
 	}
 
 	/**
-	 * Set option name
+	 * Set an option name
 	 *
 	 * @param  string $option_name  The option name.
 	 *
@@ -135,7 +135,7 @@ class FormBuilder implements FormBuilderInterface {
 	/**
 	 * Settings fields
 	 *
-	 * @param  array  $fields  The fields settings.
+	 * @param  array  $fields  The field settings.
 	 * @param  string $option_name  The option name.
 	 * @param  array  $values  The values.
 	 *

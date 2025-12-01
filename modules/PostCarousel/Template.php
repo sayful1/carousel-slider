@@ -23,7 +23,7 @@ class Template extends AbstractTemplate {
 		return wp_parse_args(
 			[
 				'_slide_type'       => 'post-carousel',
-				// Post Carousel Settings.
+				// Post-Carousel Settings.
 				'_post_query_type'  => 'latest_posts',
 				'_post_date_after'  => '',
 				'_post_date_before' => '',
@@ -40,12 +40,12 @@ class Template extends AbstractTemplate {
 	}
 
 	/**
-	 * Create gallery image carousel with random images
+	 * Create a gallery image carousel with random images
 	 *
 	 * @param string $slider_title The slider title.
 	 * @param array  $args Optional arguments.
 	 *
-	 * @return int The post ID on success. The value 0 on failure.
+	 * @return int The WP_Post ID on success. Value 0 on failure.
 	 */
 	public static function create( string $slider_title = '', array $args = array() ): int {
 		if ( empty( $slider_title ) ) {
@@ -105,7 +105,7 @@ class Template extends AbstractTemplate {
 	}
 
 	/**
-	 * Get random post categories id
+	 * Get random post-categories id
 	 *
 	 * @return array List of categories id.
 	 */

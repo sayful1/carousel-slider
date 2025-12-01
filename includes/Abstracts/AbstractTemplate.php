@@ -55,7 +55,7 @@ abstract class AbstractTemplate {
 	}
 
 	/**
-	 * Get list of images sorted by its width and height
+	 * Get a list of images sorted by its width and height
 	 *
 	 * @param string $image_size The image size.
 	 * @param int    $per_page Item per page.
@@ -110,7 +110,7 @@ abstract class AbstractTemplate {
 	 *
 	 * @param string $slider_title The slider title.
 	 *
-	 * @return int|WP_Error The post ID on success. The value 0 or \WP_Error on failure.
+	 * @return int|WP_Error The WP_Post ID on success. The value 0 or \WP_Error on failure.
 	 */
 	public static function create_slider( string $slider_title ) {
 		return Helper::create_slider( $slider_title );

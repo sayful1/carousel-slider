@@ -13,7 +13,7 @@ interface FormBuilderInterface {
 	public function set_fields_settings( array $settings );
 
 	/**
-	 * Set option name
+	 * Set an option name
 	 *
 	 * @param string $option_name The option name.
 	 */

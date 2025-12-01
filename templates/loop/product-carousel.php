@@ -2,7 +2,7 @@
 defined( 'ABSPATH' ) || die;
 
 /**
- * The global variable that are available to use here
+ * The global variables that are available to use here
  *
  * @global \CarouselSlider\Modules\ProductCarousel\Setting $setting Slider setting object.
  * @global \WC_Product $object The WooCommerce product object.

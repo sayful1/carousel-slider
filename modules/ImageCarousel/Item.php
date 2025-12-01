@@ -76,7 +76,7 @@ class Item {
 	}
 
 	/**
-	 * Get link start html
+	 * Get link start HTML
 	 *
 	 * @param string $context The context.
 	 * @param string $target The target.
@@ -99,7 +99,7 @@ class Item {
 	}
 
 	/**
-	 * Get link end html
+	 * Get link end HTML
 	 *
 	 * @param string $context The context.
 	 *
@@ -136,7 +136,7 @@ class Item {
 	}
 
 	/**
-	 * Get post object
+	 * Get WP_Post object
 	 *
 	 * @return WP_Post
 	 */

@@ -2,16 +2,15 @@
 /**
  * Plugin Name: Carousel Slider
  * Plugin URI: https://majeedraza.me/?utm_source=wp-plugins&utm_campaign=plugin-uri&utm_medium=wp-dash
- * Description: <strong>Carousel Slider</strong> allows you to create beautiful, touch enabled, responsive carousels and sliders. It let you create SEO friendly Image carousel from Media Library or from custom URL, Video carousel using Youtube and Vimeo video, Post carousel, Hero banner slider and various types of WooCommerce products carousels.
- * Version: 2.2.16
- * Author: Majeed Raza
- * Author URI: https://majeedraza.me/?utm_source=wp-plugins&utm_campaign=author-uri&utm_medium=wp-dash
+ * Description: <strong>Carousel Slider</strong> allows you to create beautiful, touch-enabled, responsive carousels and sliders. It lets you create SEO friendly Image carousel from Media Library or from custom URL, Video carousel using YouTube and Vimeo video, Post carousel, Hero banner slider and various types of WooCommerce products carousels.
+ * Version: 2.2.17
+ * Requires at least: 6.7
  * Requires PHP: 7.0
- * Requires at least: 5.6
- * Tested up to: 6.6
+ * Author: Sayful Islam
+ * Author URI: https://github.com/sayful1/?utm_source=wp-plugins&utm_campaign=author-uri&utm_medium=wp-dash
  *
  * WC requires at least: 3.0
- * WC tested up to: 9.1
+ * WC tested up to: 10.3
  *
  * Text Domain: carousel-slider
  *
@@ -85,7 +84,7 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 				// Register autoloader.
 				self::$instance->register_autoloader();
 
-				// Check if PHP version is supported for our plugin.
+				// Check if the PHP version is supported for our plugin.
 				if ( ! self::$instance->is_supported_php() ) {
 					register_activation_hook( __FILE__, [ self::$instance, 'auto_deactivate' ] );
 					add_action( 'admin_notices', [ self::$instance, 'php_version_notice' ] );
@@ -184,7 +183,7 @@ if ( ! class_exists( 'Carousel_Slider' ) ) {
 		}
 
 		/**
-		 * Show notice about PHP version
+		 * Show notice about the PHP version
 		 *
 		 * @return void
 		 */

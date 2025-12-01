@@ -1,21 +1,21 @@
 === Carousel Slider ===
-Contributors: majeedraza
+Contributors: sayful
 Tags: carousel, carousel slider, image carousel, product carousel, slider
-Requires at least: 6.0
-Tested up to: 6.8
+Requires at least: 6.7
+Tested up to: 6.9
 Requires PHP: 7.0
-Stable tag: 2.2.16
+Stable tag: 2.2.17
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
-Create SEO friendly Image, Logo, Video, Post, WooCommerce Product Carousel and Slider.
+Create SEO friendly Image, Logo, Video, Post, WooCommerce Product Carousel, and Slider.
 
 == Description ==
 
-**Create SEO friendly Image, Logo, Video, Post, WooCommerce Product Carousel and Slider.**
+**Create SEO friendly Image, Logo, Video, Post, WooCommerce Product Carousel, and Slider.**
 
-Carousel Slider is a touch enabled WordPress plugin that lets you create highly customizable,
-stylish responsive carousel slider. With Carousel Slider, you can create image carousel using media gallery or
+Carousel Slider is a touch-enabled WordPress plugin that lets you create a highly customizable,
+stylish responsive carousel slider. With Carousel Slider, you can create an image carousel using a media gallery or
 custom url, post carousel, video carousel.
 
 **If you like this plugin, please give us [5 star](https://wordpress.org/support/plugin/carousel-slider/reviews/?rate=5#new-post) to encourage for future improvement.**
@@ -47,17 +47,17 @@ custom url, post carousel, video carousel.
 * Find the WordPress Plugin named **Carousel Slider** by **Sayful Islam**.
 * Click **Install Now** to install the **Carousel Slider** Plugin.
 * The plugin will begin to download and install.
-* Now just click **Activate** to activate the plugin.
+* Now click **Activate** to activate the plugin.
 
 If you still need help. visit [WordPress codex](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins)
 
 == Screenshots ==
 
 1. Carousel slider admin page
-2. Front-end example of posts carousel slider.
-3. Front-end example of videos carousel slider.
-4. Front-end example of images carousel slider.
-5. Front-end example of products carousel slider.
+2. Front-end example of a post-carousel slider.
+3. Front-end example of a video carousel slider.
+4. Front-end example of an image carousel slider.
+5. Front-end example of a product carousel slider.
 6. Front-end example of products Quick View.
 7. Front-end example of image lightbox.
 8. Carousel slider admin live preview.
@@ -71,19 +71,23 @@ Update to get new features and better security.
 Carousel Slider works with any WordPress theme if themes are developed according to WordPress standard.
 
 = Is Carousel Slider responsive? =
-Yes, Carousel Slider is fully responsive, mobile and touch-friendly.
+Yes, Carousel Slider is fully responsive, mobile, and touch-friendly.
 
 = Can I add Carousel Slider anywhere on my website?=
-Yes, you can add carousel inside your blog posts, pages, widgets, and anywhere else on your WordPress website with a shortcode.
+Yes, you can add a carousel inside your blog posts, pages, widgets, and anywhere else on your WordPress website with a shortcode.
 
-= Can I have multiple carousels on same post/page?
-Yes. You can add multiple carousel on same post/page.
+= Can I have multiple carousels on the same post / page?
+Yes. You can add multiple carousels on the same post / page.
 
 = How to use Carousel Slider in Gutenberg Block Editor (WordPress 5.0 or later) =
-Carousel Slider is first class citizen in Gutenberg Block Editor. Just search 'carousel slider'. There is
-a dedicated 'carousel slider' block with live preview for Gutenberg Block Editor.
+Carousel Slider is a first-class citizen in Gutenberg Block Editor. Search 'carousel slider' There is
+a dedicated 'carousel slider' block with a live preview for Gutenberg Block Editor.
 
 == Changelog ==
+
+= version 2.2.16 - 2025-12-01 =
+* Test with WordPress 6.9 and WooCommerce 10.3
+* Fix - Function _load_textdomain_just_in_time was called incorrectly issue.
 
 = version 2.2.16 - 2025-04-10 =
 * Remove data sharing and feedback functionality.
@@ -93,22 +97,22 @@ a dedicated 'carousel slider' block with live preview for Gutenberg Block Editor
 * Fix - Fix XSS security vulnerability via Magnific Popups JavaScript Library
 
 = version 2.2.14 - 2024-08-20 =
-* Fix - Fix XSS security vulnerability from slide edit page for Hero Carousel. (reported by Bob)
+* Fix - Fix XSS security vulnerability from the slide edit page for Hero Carousel. (reported by Bob)
 
 = version 2.2.13 - 2024-06-14 =
-* Feature - Add live preview option on slider edit page.
+* Feature - Add a live preview option on the slider edit page.
 
 = version 2.2.12 - 2024-05-22 =
 * Tweak - Update video parse functionality from YouTube share url.
-* Tweak - Add setting option to enable/disable data sharing.
+* Tweak - Add a setting option to enable/disable data sharing.
 * Dev - Update internal code based on updated WordPress coding standards.
 * Dev - Fix some minor bugs.
 
 = version 2.2.11 - 2024-04-18 =
-* Fix - Fix XSS security vulnerability from slide edit page for Image Carousel (URL). (reported by Dmitrii Ignatyev)
+* Fix - Fix XSS security vulnerability from the slide edit page for Image Carousel (URL). (reported by Dmitrii Ignatyev)
 
 = version 2.2.10 - 2024-04-09 =
-* Fix - Fix XSS security vulnerability from slide edit page for Hero Carousel. (reported by Artyom Krugov)
+* Fix - Fix XSS security vulnerability from the slide edit page for Hero Carousel. (reported by Artyom Krugov)
 
 = version 2.2.9 - 2024-04-07 =
 * Dev - Update compatibility with WooCommerce High-Performance Order Storage.
@@ -121,10 +125,10 @@ a dedicated 'carousel slider' block with live preview for Gutenberg Block Editor
 * Fix - Update data escape functionality for slider configuration.
 
 = version 2.2.6 - 2024-02-07 =
-* Fix - Fix data sanitize issue for field 'Slides Per View' on admin edit page.
+* Fix - Fix data sanitize issue for the field 'Slides Per View' on the admin edit page.
 
 = version 2.2.5 - 2023-11-12 =
-* Fix - Fix post carousel date issue.
+* Fix - Fix post-carousel date issue.
 * Fix - Fix star rating style broken for WooCommerce product carousel.
 
 = version 2.2.4 - 2023-08-20 =
@@ -132,7 +136,7 @@ a dedicated 'carousel slider' block with live preview for Gutenberg Block Editor
 * Fix - Add permission checking on plugin deactivation feedback data submission.
 
 = version 2.2.3 - 2023-08-18 =
-* Fix - Fix a security issue related to plugin data tracking consent option.
+* Fix - Fix a security issue related to a plugin data tracking consent option.
 
 = version 2.2.2 - 2023-08-08 =
 * Dev - Tested with WordPress 6.3 and WooCommerce 7.9
@@ -140,16 +144,16 @@ a dedicated 'carousel slider' block with live preview for Gutenberg Block Editor
 
 = version 2.2.1 - 2023-03-31 =
 * Dev - Tested with WordPress 6.2 and WooCommerce 7.5
-* Dev - Update Swiper javaScript library to version 9.1
-* Dev - Update others JavaScript dependencies to the latest version.
+* Dev - Update the Swiper JavaScript library to version 9.1
+* Dev - Update other JavaScript dependencies to the latest version.
 
 = version 2.2.0 - 2022-12-31 =
 * Feature - Add template to overwrite design from theme.
 * Feature - Add basic dialog to replace "Magnific Popup" library.
-* Feature - Add "Swiper" for replacement of "Owl Carousel 2" for slider library.
+* Feature - Add "Swiper" to replace "Owl Carousel 2" for the slider library.
 * Dev - Re-design responsive setting functionality.
 * Dev - Add SliderSettingInterface class.
 * Dev - Add MetaBoxConfig class to make metabox configuration shareable.
-* Dev - Add multi checkbox setting field.
+* Dev - Add multi-checkbox setting field.
 * Fix - Hero carousel delete button not working.
 * Fix - Hero carousel index is not correct.

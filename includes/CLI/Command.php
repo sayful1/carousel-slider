@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Command extends WP_CLI_Command {
 	/**
-	 * Create post carousel
+	 * Create a post-carousel
 	 *
 	 * @param  array  $args  The arguments.
 	 * @param  string $slider_title  The slider title.
@@ -72,7 +72,7 @@ class Command extends WP_CLI_Command {
 	 * : The name of the slider to create.
 	 *
 	 * [--type=<type>]
-	 * : Carousel slider slider type.
+	 * : Carousel slider type.
 	 * ---
 	 * default: image-carousel
 	 * options:
@@ -103,10 +103,10 @@ class Command extends WP_CLI_Command {
 	 * : Post carousel query starting date.
 	 *
 	 * [--post-categories=<post-categories>]
-	 * : Comma separated post category id
+	 * : Comma separated post-category id
 	 *
 	 * [--post-tags=<post-tags>]
-	 * : Comma separated post tag id
+	 * : Comma separated post-tag id
 	 *
 	 * [--post-in=<post-in>]
 	 * : Comma separated post id

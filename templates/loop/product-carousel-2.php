@@ -3,11 +3,11 @@
 defined( 'ABSPATH' ) || die;
 
 /**
- * The global variable that are available to use here
+ * The global variables that are available to use here
  *
  * @global \CarouselSlider\Modules\ProductCarousel\Setting $setting Slider setting object.
  * @global \WC_Product $product The WooCommerce product object.
- * @global \WP_Post $post The post object.
+ * @global \WP_Post $post The WP_Post object.
  */
 
 

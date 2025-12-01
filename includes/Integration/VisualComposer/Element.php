@@ -24,7 +24,7 @@ class Element {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 
-			add_action( 'init', array( self::$instance, 'integrate_with_vc' ) );
+			self::$instance->integrate_with_vc();
 		}
 
 		return self::$instance;

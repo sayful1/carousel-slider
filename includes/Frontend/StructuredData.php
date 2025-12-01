@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * StructuredData class
  *
- * The structure-data specific class of the plugin
+ * The structure-data-specific class of the plugin
  */
 class StructuredData {
 	/**
@@ -209,7 +209,7 @@ class StructuredData {
 	}
 
 	/**
-	 * Check if image is already added to list
+	 * Check if an image is already added to the list
 	 *
 	 * @param string|null $image_id The image id.
 	 *
@@ -232,7 +232,7 @@ class StructuredData {
 	}
 
 	/**
-	 * Check if product is already added to list
+	 * Check if a product is already added to the list
 	 *
 	 * @param string $product_id The product id.
 	 *
@@ -255,7 +255,7 @@ class StructuredData {
 	}
 
 	/**
-	 * Check if post is already added to list
+	 * Check if a post is already added to the list
 	 *
 	 * @param string $post_id The post id.
 	 *

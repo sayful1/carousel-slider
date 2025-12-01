@@ -2,6 +2,7 @@
 
 namespace CarouselSlider;
 
+use Automattic\WooCommerce\Utilities\FeaturesUtil;
 use CarouselSlider\Admin\Admin;
 use CarouselSlider\Admin\GutenbergBlock;
 use CarouselSlider\Admin\MetaBox;
@@ -28,7 +29,7 @@ use WP_CLI_Command;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * The main plugin handler class is responsible for initializing plugin. The
+ * The main plugin handler class is responsible for initializing the plugin. The
  * class registers all the components required to run the plugin.
  */
 class Plugin {
@@ -67,25 +68,15 @@ class Plugin {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 
-			add_action( 'plugins_loaded', [ self::$instance, 'includes' ] );
+			add_action( 'init', [ self::$instance, 'includes' ] );
+			add_action( 'init', [ self::$instance, 'register_post_type' ] );
 			add_action( 'carousel_slider/activation', [ self::$instance, 'activation_includes' ] );
 			add_action( 'carousel_slider/deactivation', [ self::$instance, 'deactivation_includes' ] );
+			// Declare compatibility with WooCommerce plugin extensions.
+			add_action( 'before_woocommerce_init', [ self::$instance, 'declaring_extension_compatibility' ] );
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * Load the plugin text domain for translation.
-	 *
-	 * @return void
-	 */
-	public function load_plugin_textdomain() {
-		load_plugin_textdomain(
-			CAROUSEL_SLIDER,
-			false,
-			basename( CAROUSEL_SLIDER_PATH ) . '/languages'
-		);
 	}
 
 	/**
@@ -94,20 +85,16 @@ class Plugin {
 	 * @return void
 	 */
 	public function includes() {
-		// Register custom post type.
-		add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
-		// Register custom post type.
-		add_action( 'init', [ $this, 'register_post_type' ] );
 
-		$this->container['assets']   = Assets::init();
-		$this->container['widget']   = CarouselSliderWidget::init();
+		$this->container['assets'] = Assets::init();
+		$this->container['widget'] = CarouselSliderWidget::init();
 
 		// Load classes for admin area.
 		if ( $this->is_request( 'admin' ) ) {
 			$this->admin_includes();
 		}
 
-		// Load classes for frontend area.
+		// Load classes for the frontend area.
 		if ( $this->is_request( 'frontend' ) ) {
 			$this->frontend_includes();
 		}
@@ -190,7 +177,7 @@ class Plugin {
 	}
 
 	/**
-	 * Carousel slider post type
+	 * Carousel slider post-type
 	 */
 	public function register_post_type() {
 		$labels = [
@@ -259,5 +246,15 @@ class Plugin {
 	 */
 	private function is_request( string $type ): bool {
 		return Helper::is_request( $type );
+	}
+
+	/**
+	 * Declaring extension compatibility
+	 * - High-performance order storage
+	 */
+	public function declaring_extension_compatibility() {
+		if ( class_exists( FeaturesUtil::class ) ) {
+			FeaturesUtil::declare_compatibility( 'custom_order_tables', CAROUSEL_SLIDER_FILE, true );
+		}
 	}
 }

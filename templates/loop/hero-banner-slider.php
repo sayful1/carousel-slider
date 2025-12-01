@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || die;
 
 /**
- * The global variable that are available to use here
+ * The global variables that are available to use here
  *
  * This template can be overridden by copying it to yourtheme/carousel-slider/loop/hero-banner-slider.php.
  *

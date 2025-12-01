@@ -40,7 +40,7 @@ class ApiController extends WP_REST_Controller {
 	 *
 	 * @param WP_REST_Request $request Full details about the request.
 	 *
-	 * @return true|WP_Error True if the request has read access, WP_Error object otherwise.
+	 * @return true|WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
 		$post_type = get_post_type_object( CAROUSEL_SLIDER_POST_TYPE );
@@ -60,7 +60,7 @@ class ApiController extends WP_REST_Controller {
 	 *
 	 * @param WP_REST_Request $request Full details about the request.
 	 *
-	 * @return true|WP_Error True if the request has access to delete the item, WP_Error object otherwise.
+	 * @return true|WP_Error True, if the request has access to delete the item, WP_Error object otherwise.
 	 */
 	public function get_item_permissions_check( $request ) {
 		$post = get_post( $request['id'] );
@@ -90,7 +90,7 @@ class ApiController extends WP_REST_Controller {
 	 *
 	 * @param WP_REST_Request $request Full details about the request.
 	 *
-	 * @return true|WP_Error True if the request has access to create items, WP_Error object otherwise.
+	 * @return true|WP_Error True, if the request has access to create items, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
 		$post_type = get_post_type_object( CAROUSEL_SLIDER_POST_TYPE );
@@ -110,7 +110,7 @@ class ApiController extends WP_REST_Controller {
 	 *
 	 * @param WP_REST_Request $request Full details about the request.
 	 *
-	 * @return true|WP_Error True if the request has access to delete the item, WP_Error object otherwise.
+	 * @return true|WP_Error True, if the request has access to delete the item, WP_Error object otherwise.
 	 */
 	public function delete_item_permissions_check( $request ) {
 		$post = get_post( $request['id'] );
@@ -136,7 +136,7 @@ class ApiController extends WP_REST_Controller {
 	}
 
 	/**
-	 * Get general setting arguments property
+	 * Get general setting argument property
 	 *
 	 * @return array[]
 	 */

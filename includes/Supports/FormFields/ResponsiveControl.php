@@ -5,7 +5,7 @@ namespace CarouselSlider\Supports\FormFields;
 use CarouselSlider\Helper;
 
 /**
- * Columns class
+ * ResponsiveControl class
  */
 class ResponsiveControl extends BaseField {
 	/**

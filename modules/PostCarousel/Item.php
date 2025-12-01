@@ -67,7 +67,7 @@ class Item {
 	}
 
 	/**
-	 * Get post object
+	 * Get WP_Post object
 	 *
 	 * @return WP_Post
 	 */
@@ -76,7 +76,7 @@ class Item {
 	}
 
 	/**
-	 * Get post id
+	 * Get WP_Post id
 	 *
 	 * @return int
 	 */
@@ -94,7 +94,7 @@ class Item {
 	}
 
 	/**
-	 * Get post title
+	 * Get WP_Post title
 	 *
 	 * @return string
 	 */
@@ -103,7 +103,7 @@ class Item {
 	}
 
 	/**
-	 * Get post content
+	 * Get WP_Post content
 	 *
 	 * @return string
 	 */
@@ -112,7 +112,7 @@ class Item {
 	}
 
 	/**
-	 * Get summery html
+	 * Get summery HTML
 	 *
 	 * @param int $excerpt_length Excerpt length.
 	 *
@@ -145,7 +145,7 @@ class Item {
 	}
 
 	/**
-	 * Get formatted date post modified data
+	 * Get a formatted date post modified data
 	 *
 	 * @param string $format Date format.
 	 *
@@ -160,7 +160,7 @@ class Item {
 	}
 
 	/**
-	 * Get categories related to post
+	 * Get categories related to WP_Post
 	 *
 	 * @return array|WP_Term[] Array of terms.
 	 */
@@ -169,7 +169,7 @@ class Item {
 	}
 
 	/**
-	 * Check if it has category
+	 * Check if it has a category
 	 *
 	 * @return bool
 	 */
@@ -178,7 +178,7 @@ class Item {
 	}
 
 	/**
-	 * Get primary category related to post
+	 * Get a primary category related to post
 	 *
 	 * @TODO: Check Yost SEO plugin to get primary category.
 	 *

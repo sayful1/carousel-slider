@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Setting {
 	/**
-	 * Instance of current class
+	 * Instance of the current class
 	 *
 	 * @var self
 	 */
@@ -30,7 +30,7 @@ class Setting {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 
-			add_action( 'init', array( self::$instance, 'settings' ) );
+			self::$instance->settings();
 		}
 
 		return self::$instance;
@@ -58,7 +58,7 @@ class Setting {
 	/**
 	 * Plugin setting fields
 	 *
-	 * @throws Exception It throws exception if you don't set name and id field.
+	 * @throws Exception It throws an exception if you don't set name and id field.
 	 */
 	public function settings() {
 		$settings = new DefaultSettingApi();
@@ -99,10 +99,10 @@ class Setting {
 				'default'     => 'optimized',
 				'title'       => __( 'Style & Scrips', 'carousel-slider' ),
 				'description' => __(
-					'If you choose <strong>Optimized</strong>, then scrips and styles will be loaded only on page where
- 				you are using shortcode. If <strong>Optimized</strong> is not working for you then choose
- 				<strong>Optimized with style loader</strong>. Then it will add a small javascript at footer to load css
- 				 file in header. If none of these is not working for you then choose <strong>Always</strong>',
+					'If you choose <strong>Optimized</strong>, then scrips and styles will be loaded only on the page where
+ 				you are using shortcode. If <strong>Optimized</strong> is not working for you, then choose
+ 				<strong>Optimized with style loader</strong>. Then it will add a small JavaScript at footer to load the CSS
+ 				 file in the header. If none of these is not working for you, then choose <strong>Always</strong>',
 					'carousel-slider'
 				),
 				'choices'     => array(
@@ -122,7 +122,7 @@ class Setting {
 				'title'       => __( 'Slider JavaScript package', 'carousel-slider' ),
 				'description' => __(
 					'<strong>Swiper</strong>, is the most modern mobile touch slider without any third party dependencies.
- 					<strong>Owl Carousel 2</strong> was great but now it is <strong>PRETTY MUCH DEAD</strong> as there is
+ 					<strong>Owl Carousel 2</strong> was great, but now it is <strong>PRETTY MUCH DEAD</strong> as there is
  					no development after Nov 12, 2018',
 					'carousel-slider'
 				),

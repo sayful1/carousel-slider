@@ -34,7 +34,7 @@ class ViewHelper {
 	/**
 	 * Convert array to html data attribute
 	 *
-	 * @param  array  $attributes  The attributes list.
+	 * @param  array  $attributes  The attribute list.
 	 *
 	 * @return array
 	 */
