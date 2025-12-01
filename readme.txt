@@ -85,7 +85,7 @@ a dedicated 'carousel slider' block with a live preview for Gutenberg Block Edit
 
 == Changelog ==
 
-= version 2.2.16 - 2025-12-01 =
+= version 2.2.17 - 2025-12-01 =
 * Test with WordPress 6.9 and WooCommerce 10.3
 * Fix - Function _load_textdomain_just_in_time was called incorrectly issue.
 

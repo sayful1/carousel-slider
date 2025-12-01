@@ -1,3 +1,8 @@
+#### version 2.2.17 - 2025-12-01
+
+* Test with WordPress 6.9 and WooCommerce 10.3
+* Fix - Function _load_textdomain_just_in_time was called incorrectly issue.
+
 #### version 2.2.16 - 2025-04-10
 
 * Remove data sharing and feedback functionality.
@@ -9,27 +14,27 @@
 
 #### version 2.2.14 - 2024-08-20
 
-* Fix - Fix XSS security vulnerability from slide edit page for Hero Carousel. (reported by Bob)
+* Fix - Fix XSS security vulnerability from the slide edit page for Hero Carousel. (reported by Bob)
 
 #### version 2.2.13 - 2024-06-14
 
-* Feature - Add live preview option on slider edit page.
+* Feature - Add a live preview option on the slider edit page.
 
 #### version 2.2.12 - 2024-05-22
 
 * Feature - Re-design video carousel admin UI.
-* Tweak - Update video parse functionality from youtube share url.
-* Tweak - Add setting option to enable/disable data sharing.
+* Tweak - Update video parse functionality from YouTube share url.
+* Tweak - Add a setting option to enable/disable data sharing.
 * Dev - Update internal code based on updated WordPress coding standards.
 * Dev - Fix some minor bugs.
 
 #### version 2.2.11 - 2024-04-18
 
-* Fix - Fix XSS security vulnerability from slide edit page for Image Carousel (URL) (reported by Dmitrii Ignatyev).
+* Fix - Fix XSS security vulnerability from the slide edit page for Image Carousel (URL) (reported by Dmitrii Ignatyev).
 
 #### version 2.2.10 - 2024-04-09
 
-* Fix - Fix XSS security vulnerability from slide edit page for Hero Carousel. (reported by Artyom Krugov)
+* Fix - Fix XSS security vulnerability from the slide edit page for Hero Carousel. (reported by Artyom Krugov)
 
 #### version 2.2.9 - 2024-04-07
 
@@ -46,13 +51,13 @@
 
 #### Version 2.2.6 - 2024-02-07
 
-* Fix - Fix data sanitize issue for field 'Slides Per View' on admin edit page.
+* Fix - Fix data sanitize issue for the field 'Slides Per View' on the admin edit page.
 
 #### Version 2.2.5 - 2023-11-12
 
-* Fix - Fix post carousel date issue.
+* Fix - Fix post-carousel date issue.
 * Fix - Fix star rating style broken for WooCommerce product carousel.
-* Dev - Update swiper javaScript library to version 11.
+* Dev - Update the swiper JavaScript library to version 11.
 * Dev - Tested with WordPress 6.4 and WooCommerce 8.2
 
 #### Version 2.2.4 - 2023-08-20
@@ -62,7 +67,7 @@
 
 #### Version 2.2.3 - 2023-08-18
 
-* Fix - Fix a security issue related to plugin data tracking consent option.
+* Fix - Fix a security issue related to the plugin data tracking consent option.
 
 #### Version 2.2.2 - 2023-08-08
 
@@ -72,19 +77,19 @@
 #### Version 2.2.1 - 2023-03-31
 
 * Dev - Tested with WordPress 6.2 and WooCommerce 7.5
-* Dev - Update Swiper javaScript library to version 9.1
-* Dev - Update others JavaScript dependencies to the latest version.
+* Dev - Update Swiper JavaScript library to version 9.1
+* Dev - Update other JavaScript dependencies to the latest version.
 
 #### Version 2.2.0 - 2022-12-31
 
 * Feature - Add template to overwrite design from theme.
-* Feature - Add basic dialog to replace "Magnific Popup" library.
-* Feature - Add "Swiper" for replacement of "Owl Carousel 2" for slider library.
+* Feature - Add a basic dialog to replace the "Magnific Popup" library.
+* Feature - Add "Swiper" to replace "Owl Carousel 2" for the slider library.
 * Dev - Re-design responsive setting functionality.
 * Dev - Add SliderSettingInterface class.
 * Dev - Add MetaBoxConfig class to make metabox configuration shareable.
 * Dev - Add multi checkbox setting field.
-* Fix - Hero carousel delete button not working.
+* Fix - Hero carousel delete button is not working.
 * Fix - Hero carousel index is not correct.
 
 #### Version 2.1.1 - 2022-10-04
@@ -93,35 +98,35 @@
 
 #### version 2.1.0 - 2022-05-27
 
-* Feature - Add new javaScript dialog to create carousel slider with title and slider type.
+* Feature - Add new JavaScript dialog to create carousel slider with title and slider type.
 * Feature - Update metabox functionality separating create and edit functionality.
 * Feature - Update slider type metabox design.
 * Fix - Video Content is not saving.
 * Fix - Content slider animation is too fast and not considering autoplay speed.
-* Dev - Add typescript support.
-* Dev - Add new meta box fields (Radio, Switch, ButtonGroup, Breakpoint, Html, Switch).
+* Dev - Add TypeScript support.
+* Dev - Add new meta-box fields (Radio, Switch, ButtonGroup, Breakpoint, HTML, Switch).
 * Dev - Update metabox hiding slider change on edit mode.
-* Dev - Add REST endpoint to create slider.
-* Dev - Add admin feedback ui for plugin de-activation feedback.
+* Dev - Add REST endpoint to create a slider.
+* Dev - Add admin feedback ui for plugin deactivation feedback.
 * Dev - Add admin ui to take user confirmation to send non-sensitive data.
-* Dev - Add sanitize method to sanitize array of integer.
+* Dev - Add sanitize method to sanitize an array of integer.
 * Dev - Add 'image_size' attribute on SliderSetting class.
 * Dev - Add TemplateParserInterface class.
 * Dev - Fix `ReturnTypeWillChange` warning on PHP 8.0 onward
-* Dev - Add filter to modify slider css classes.
-* Dev - Add functionality to modify responsive breakpoint.
+* Dev - Add filter to modify slider CSS classes.
+* Dev - Add functionality to modify the responsive breakpoint.
 * Dev - Group color metabox setting together.
-* Dev - Fix section setting and description is not showing.
+* Dev - Fix section setting and description are not showing.
 * Dev - Add SliderSetting::lazy_load_image() to get lazy load setting.
-* Dev - Add filter to modify hero and video carousel item html.
+* Dev - Add filter to modify hero and video carousel item HTML.
 
 #### version 2.0.10 - 2022-03-26
 
-* Fix - Fix image carousel image edit button is not working for single image.
+* Fix - Fix image carousel image edit button is not working for a single image.
 
 #### version 2.0.9 - 2022-02-27
 
-* Fix - Fix multi select field is showing as single select.
+* Fix - Fix multi select field is showing as a single select.
 
 #### version 2.0.8 - 2022-01-07
 
